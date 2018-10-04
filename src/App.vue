@@ -11,6 +11,17 @@ v-app
               v-form
                 v-text-field(v-model='command' label="command")
                 v-text-field(v-model='when' label="when")
+              v-card.text-xs-left
+                v-card-title プリセット
+                v-card-text
+                  v-btn(color="success" @click="setPreset('cursor')") 移動
+                  v-btn(color="success" @click="setPreset('select')") 選択
+                  v-btn(color="success" @click="setPreset('fold')") フォールド
+                  v-btn(color="success" @click="setPreset('delete')") 削除
+                  v-btn(color="success" @click="setPreset('focus')") フォーカス
+                  v-btn(color="success" @click="setPreset('terminal')") ターミナル
+                  v-btn(color="success" @click="setPreset('tree')") ツリービュー
+                  v-btn(color="success" @click="setPreset('breadcrumbs')") パンくず
         v-flex(xs12)
           v-card.text-xs-left
             v-card-text
@@ -47,7 +58,41 @@ export default {
       fixed: false,
       title: 'Vuetify.js',
       command: '',
-      when: ''
+      when: '',
+      preset: {
+        cursor: {
+          command: 'cursor',
+          when: ''
+        },
+        select: {
+          command: 'select',
+          when: ''
+        },
+        fold: {
+          command: 'fold',
+          when: ''
+        },
+        delete: {
+          command: 'delete',
+          when: ''
+        },
+        focus: {
+          command: 'focus',
+          when: ''
+        },
+        terminal: {
+          command: 'terminal',
+          when: ''
+        },
+        tree: {
+          command: '',
+          when: 'Explorer'
+        },
+        breadcrumbs: {
+          command: 'breadcrumbs',
+          when: ''
+        }
+      }
     }
   },
   computed: {
@@ -94,6 +139,10 @@ export default {
         .replace('oem_period', '.')
       return key
     },
+    setPreset (key) {
+      this.command = this.preset[key].command
+      this.when = this.preset[key].when
+    }
   }
 }
 </script>
