@@ -1225,47 +1225,49 @@
     },
     {
         "key": "ctrl+shift+oem_1",
-        "command": "breadcrumbs.focus"
+        "command": "breadcrumbs.focus",
+        "comment": "パンくずにフォーカス"
     },
     {
         "key": "ctrl+shift+oem_period",
-        "command": "breadcrumbs.focusAndSelect"
+        "command": "breadcrumbs.focusAndSelect",
+        "comment": "パンくずにフォーカスして現在地を開いた状態にする"
     },
     {
         "key": "ctrl+right",
         "command": "breadcrumbs.focusNext",
         "when": "breadcrumbsActive && breadcrumbsVisible",
-        "comment": ""
+        "comment": "パンくず上で右に移動"
     },
     {
         "key": "right",
         "command": "breadcrumbs.focusNext",
         "when": "breadcrumbsActive && breadcrumbsVisible",
-        "comment": ""
+        "comment": "パンくず上で右に移動"
     },
     {
         "key": "ctrl+left",
         "command": "breadcrumbs.focusPrevious",
         "when": "breadcrumbsActive && breadcrumbsVisible",
-        "comment": ""
+        "comment": "パンくず上で左に移動"
     },
     {
         "key": "left",
         "command": "breadcrumbs.focusPrevious",
         "when": "breadcrumbsActive && breadcrumbsVisible",
-        "comment": ""
+        "comment": "パンくず上で左に移動"
     },
     {
         "key": "ctrl+enter",
         "command": "breadcrumbs.revealFocused",
         "when": "breadcrumbsActive && breadcrumbsVisible",
-        "comment": ""
+        "comment": "パンくずを開いて現在開いているファイルの場所をフォーカスさせる"
     },
     {
         "key": "space",
         "command": "breadcrumbs.revealFocused",
         "when": "breadcrumbsActive && breadcrumbsVisible",
-        "comment": ""
+        "comment": "パンくずを開いて現在開いているファイルの場所をフォーカスさせる"
     },
     {
         "key": "ctrl+enter",
@@ -1277,25 +1279,25 @@
         "key": "down",
         "command": "breadcrumbs.selectFocused",
         "when": "breadcrumbsActive && breadcrumbsVisible",
-        "comment": ""
+        "comment": "パンくずを開く"
     },
     {
         "key": "enter",
         "command": "breadcrumbs.selectFocused",
         "when": "breadcrumbsActive && breadcrumbsVisible",
-        "comment": ""
+        "comment": "パンくずを開く"
     },
     {
         "key": "shift+escape",
         "command": "closeAccessibilityHelp",
         "when": "accessibilityHelpWidgetVisible && editorFocus",
-        "comment": ""
+        "comment": "エディタにフォーカスを移す"
     },
     {
         "key": "escape",
         "command": "closeAccessibilityHelp",
         "when": "accessibilityHelpWidgetVisible && editorFocus",
-        "comment": ""
+        "comment": "エディタにフォーカスを移す"
     },
     {
         "key": "escape",
