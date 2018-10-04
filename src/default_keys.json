@@ -548,7 +548,7 @@
         "key": "shift+alt+i",
         "command": "editor.action.insertCursorAtEndOfEachLineSelected",
         "when": "editorTextFocus",
-        "comment": ""
+        "comment": "選択中の各行の最後にカーソルを作成"
     },
     {
         "key": "ctrl+alt+down",
