@@ -33,7 +33,7 @@
         "key": "ctrl+end",
         "command": "cursorBottom",
         "when": "textInputFocus",
-        "comment": "最下部にカーソルを移動"
+        "comment": "最下部に移動"
     },
     {
         "key": "ctrl+shift+end",
@@ -81,25 +81,25 @@
         "key": "down",
         "command": "cursorDown",
         "when": "textInputFocus",
-        "comment": "カーソルを下に移動"
+        "comment": "下に移動"
     },
     {
         "key": "ctrl+shift+down",
         "command": "cursorDownSelect",
         "when": "textInputFocus",
-        "comment": "選択しながら一行下にカーソル下に移動"
+        "comment": "下に選択範囲を広げる"
     },
     {
         "key": "shift+down",
         "command": "cursorDownSelect",
         "when": "textInputFocus",
-        "comment": "選択しながら一行下にカーソル下に移動"
+        "comment": "下に選択範囲を広げる"
     },
     {
         "key": "end",
         "command": "cursorEnd",
         "when": "textInputFocus",
-        "comment": "行末にカーソルを移動"
+        "comment": "行末に移動"
     },
     {
         "key": "shift+end",
@@ -111,7 +111,7 @@
         "key": "home",
         "command": "cursorHome",
         "when": "textInputFocus",
-        "comment": "行頭までカーソルを移動"
+        "comment": "行頭まで移動"
     },
     {
         "key": "shift+home",
@@ -135,31 +135,31 @@
         "key": "pagedown",
         "command": "cursorPageDown",
         "when": "textInputFocus",
-        "comment": "1ページ分カーソル位置を下に移動"
+        "comment": "1ページ下に移動"
     },
     {
         "key": "shift+pagedown",
         "command": "cursorPageDownSelect",
         "when": "textInputFocus",
-        "comment": "1ページ分下に選択範囲を広げる"
+        "comment": "1ページ下に選択範囲を広げる"
     },
     {
         "key": "pageup",
         "command": "cursorPageUp",
         "when": "textInputFocus",
-        "comment": "1ページ分カーソル位置を上に移動"
+        "comment": "1ページ上に移動"
     },
     {
         "key": "shift+pageup",
         "command": "cursorPageUpSelect",
         "when": "textInputFocus",
-        "comment": "1ページ分上に選択範囲を広げる"
+        "comment": "1ページ上に選択範囲を広げる"
     },
     {
         "key": "right",
         "command": "cursorRight",
         "when": "textInputFocus",
-        "comment": "カーソル位置を右に移動"
+        "comment": "右に移動"
     },
     {
         "key": "shift+right",
@@ -171,7 +171,7 @@
         "key": "ctrl+home",
         "command": "cursorTop",
         "when": "textInputFocus",
-        "comment": "カーソル位置をファイルの先頭に移動"
+        "comment": "ファイルの先頭に移動"
     },
     {
         "key": "ctrl+shift+home",
@@ -183,7 +183,7 @@
         "key": "up",
         "command": "cursorUp",
         "when": "textInputFocus",
-        "comment": "カーソル位置を上に移動"
+        "comment": "上に移動"
     },
     {
         "key": "ctrl+shift+up",
@@ -338,13 +338,13 @@
         "key": "ctrl+u",
         "command": "cursorUndo",
         "when": "textInputFocus",
-        "comment": "カーソルを元の位置に移動"
+        "comment": "元の位置に移動"
     },
     {
         "key": "ctrl+right",
         "command": "cursorWordEndRight",
         "when": "textInputFocus",
-        "comment": "カーソルを単語の最後に移動"
+        "comment": "単語の最後に移動"
     },
     {
         "key": "ctrl+shift+right",
@@ -356,7 +356,7 @@
         "key": "ctrl+left",
         "command": "cursorWordStartLeft",
         "when": "textInputFocus",
-        "comment": "カーソルを単語の最初に移動"
+        "comment": "単語の最初に移動"
     },
     {
         "key": "ctrl+shift+left",
@@ -368,13 +368,13 @@
         "key": "ctrl+backspace",
         "command": "deleteWordLeft",
         "when": "textInputFocus && !editorReadonly",
-        "comment": ""
+        "comment": "単語の先頭まで削除"
     },
     {
         "key": "ctrl+delete",
         "command": "deleteWordRight",
         "when": "textInputFocus && !editorReadonly",
-        "comment": ""
+        "comment": "単語の末尾まで削除"
     },
     {
         "key": "ctrl+k ctrl+c",
@@ -386,7 +386,7 @@
         "key": "ctrl+d",
         "command": "editor.action.addSelectionToNextFindMatch",
         "when": "editorFocus",
-        "comment": ""
+        "comment": "選択している文字列と同じ文字列を次々に選択"
     },
     {
         "key": "shift+alt+a",
@@ -416,7 +416,7 @@
         "key": "shift+delete",
         "command": "editor.action.clipboardCutAction",
         "when": "textInputFocus && !editorReadonly",
-        "comment": ""
+        "comment": "カット"
     },
     {
         "key": "ctrl+x",
@@ -446,31 +446,31 @@
         "key": "shift+alt+down",
         "command": "editor.action.copyLinesDownAction",
         "when": "editorTextFocus && !editorReadonly",
-        "comment": ""
+        "comment": "行を下に複製"
     },
     {
         "key": "shift+alt+up",
         "command": "editor.action.copyLinesUpAction",
         "when": "editorTextFocus && !editorReadonly",
-        "comment": ""
+        "comment": "行を上に複製"
     },
     {
         "key": "ctrl+k ctrl+k",
         "command": "editor.action.defineKeybinding",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'jsonc'",
-        "comment": ""
+        "comment": "keybinding.jsonを編集しているとき、設定を記述するのを助けてくれる"
     },
     {
         "key": "ctrl+shift+k",
         "command": "editor.action.deleteLines",
         "when": "textInputFocus && !editorReadonly",
-        "comment": ""
+        "comment": "行を削除"
     },
     {
         "key": "f7",
         "command": "editor.action.diffReview.next",
         "when": "isInDiffEditor",
-        "comment": ""
+        "comment": "gitのdiffとか見てるときに次の差分箇所に移動"
     },
     {
         "key": "shift+f7",
@@ -506,7 +506,7 @@
         "key": "ctrl+k ctrl+f",
         "command": "editor.action.formatSelection",
         "when": "editorHasSelection && editorTextFocus && !editorReadonly",
-        "comment": ""
+        "comment": "選択範囲を整形する"
     },
     {
         "key": "f12",
@@ -873,13 +873,13 @@
         "key": "ctrl+k ctrl+oem_4",
         "command": "editor.foldRecursively",
         "when": "editorTextFocus",
-        "comment": "現在のカーソル位置から下の階層の部分を各字下げ箇所でfold"
+        "comment": "現在の位置から下の階層の部分を各字下げ箇所でfold"
     },
     {
         "key": "ctrl+shift+oem_6",
         "command": "editor.unfold",
         "when": "editorTextFocus",
-        "comment": "現在のカーソル位置でfold解除"
+        "comment": "現在の位置でfold解除"
     },
     {
         "key": "ctrl+k ctrl+j",
@@ -891,13 +891,13 @@
         "key": "ctrl+k ctrl+9",
         "command": "editor.unfoldAllMarkerRegions",
         "when": "editorTextFocus",
-        "comment": "現在のカーソル位置でfold解除"
+        "comment": "すべてのMarkerRegionのfoldを解除"
     },
     {
         "key": "ctrl+k ctrl+oem_6",
         "command": "editor.unfoldRecursively",
         "when": "editorTextFocus",
-        "comment": "すべてのMarkerRegionのfoldを解除"
+        "comment": "現在の位置の下の階層をすべてfold解除"
     },
     {
         "key": "tab",
@@ -1349,7 +1349,7 @@
         "key": "ctrl+enter",
         "command": "explorer.openToSide",
         "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus",
-        "comment": ""
+        "comment": "ファイルを画面を分割して開く"
     },
     {
         "key": "alt+down",
@@ -2189,13 +2189,13 @@
         "key": "ctrl+backspace",
         "command": "workbench.action.terminal.deleteWordLeft",
         "when": "terminalFocus",
-        "comment": ""
+        "comment": "単語の先頭まで削除"
     },
     {
         "key": "ctrl+delete",
         "command": "workbench.action.terminal.deleteWordRight",
         "when": "terminalFocus",
-        "comment": ""
+        "comment": "単語の末尾まで削除"
     },
     {
         "key": "ctrl+f",
@@ -2445,31 +2445,31 @@
         "key": "shift+delete",
         "command": "deleteFile",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
-        "comment": ""
+        "comment": "ファイルを完全に削除"
     },
     {
         "key": "ctrl+c",
         "command": "filesExplorer.copy",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !inputFocus",
-        "comment": ""
+        "comment": "ファイルをコピー"
     },
     {
         "key": "ctrl+v",
         "command": "filesExplorer.paste",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus",
-        "comment": ""
+        "comment": "コピーしたファイルをペースト"
     },
     {
         "key": "delete",
         "command": "moveFileToTrash",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
-        "comment": ""
+        "comment": "ファイルをゴミ箱に移動"
     },
     {
         "key": "f2",
         "command": "renameFile",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus",
-        "comment": ""
+        "comment": "ファイル名変更"
     },
     {
         "key": "shift+escape",
