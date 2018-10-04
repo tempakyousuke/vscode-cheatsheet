@@ -1,22 +1,47 @@
 <template lang='pug'>
 v-app
   v-content
-    v-container(fluid='')
-      v-slide-y-transition(mode='out-in')
-        v-layout(column='', align-center='')
+    v-container(grid-list-md text-xs-center)
+      v-layout(row wrap)
+        v-flex(xs12)
           img.mb-5(src='@/assets/logo.png', alt='Vuetify.js')
-          blockquote
-            | “First, solve the problem. Then, write the code.”
-            footer
-              small
-                em —John Johnson
+        v-flex(xs12)
+          v-card
+            v-card-text
+              v-form
+                v-text-field(v-model='command' label="command")
+                v-text-field(v-model='when' label="when")
+              v-card.text-xs-left
+                v-card-title プリセット
+                v-card-text
+                  v-btn(color="success" @click="setPreset('cursor')") 移動
+                  v-btn(color="success" @click="setPreset('select')") 選択
+                  v-btn(color="success" @click="setPreset('fold')") フォールド
+                  v-btn(color="success" @click="setPreset('delete')") 削除
+                  v-btn(color="success" @click="setPreset('focus')") フォーカス
+                  v-btn(color="success" @click="setPreset('terminal')") ターミナル
+                  v-btn(color="success" @click="setPreset('tree')") ツリービュー
+                  v-btn(color="success" @click="setPreset('breadcrumbs')") パンくず
+        v-flex(xs12)
+          v-card.text-xs-left
+            v-card-text
+              v-data-table(:headers='headers', :items='keyBind' hide-actions expand)
+                template(slot='items', slot-scope="props")
+                  td.key-td
+                    | {{replaceKey(props.item.key)}}
+                  td.command-td
+                    | {{props.item.command}}
+                  td.when-td
+                    | {{props.item.when}}
+                  td.comment-td
+                    | {{props.item.comment}}
   v-footer(:fixed='fixed', app='')
     span © 2017
 
 </template>
 
 <script>
-import keyBind from './default_keys.json'
+import defaultKeyBind from './default_keys.json'
 
 export default {
   name: 'App',
@@ -24,13 +49,117 @@ export default {
   },
   data () {
     return {
-      key_bind: keyBind,
+      headers: [
+        { text: 'key', value: 'key', sortable: false },
+        { text: 'command', value: 'command', sortable: false },
+        { text: 'when', value: 'when', sortable: false },
+        { text: 'コメント', value: 'comment', sortable: false }
+      ],
       fixed: false,
-      title: 'Vuetify.js'
+      title: 'Vuetify.js',
+      command: '',
+      when: '',
+      preset: {
+        cursor: {
+          command: 'cursor',
+          when: ''
+        },
+        select: {
+          command: 'select',
+          when: ''
+        },
+        fold: {
+          command: 'fold',
+          when: ''
+        },
+        delete: {
+          command: 'delete',
+          when: ''
+        },
+        focus: {
+          command: 'focus',
+          when: ''
+        },
+        terminal: {
+          command: 'terminal',
+          when: ''
+        },
+        tree: {
+          command: '',
+          when: 'Explorer'
+        },
+        breadcrumbs: {
+          command: 'breadcrumbs',
+          when: ''
+        }
+      }
     }
   },
-  created () {
-    console.log(this.key_data[0])
+  computed: {
+    keyBind () {
+      let keyBind = Object.assign([], defaultKeyBind)
+
+      if (this.command) {
+        keyBind = keyBind.filter(value => {
+          if (value.command) {
+            let regexp = new RegExp(this.command, 'i')
+            return value.command.match(regexp)
+          } else {
+            return false
+          }
+        })
+      }
+
+      if (this.when) {
+        keyBind = keyBind.filter(value => {
+          if (value.when) {
+            let regexp = new RegExp(this.when, 'i')
+            return value.when.match(regexp)
+          } else {
+            return false
+          }
+        })
+      }
+      return keyBind
+    }
+  },
+  methods: {
+    replaceKey (key) {
+      key = key
+        .replace('escape', 'ESC')
+        .replace('oem_1', ':')
+        .replace('oem_2', '/')
+        .replace('oem_3', '@')
+        .replace('oem_4', '[')
+        .replace('oem_5', '\'')
+        .replace('oem_6', ']')
+        .replace('oem_comma', ',')
+        .replace('oem_plus', '＋')
+        .replace('oem_minus', '－')
+        .replace('oem_period', '.')
+      return key
+    },
+    setPreset (key) {
+      this.command = this.preset[key].command
+      this.when = this.preset[key].when
+    }
   }
 }
 </script>
+<style lang='sass' scoped>
+td.key-td
+  width: 200px
+  padding-right: 20px
+  overflow-wrap: break-word
+td.command-td
+  max-width: 200px
+  padding-right: 20px
+  overflow-wrap: break-word
+td.when-td
+  max-width: 200px
+  padding-right: 20px
+  overflow-wrap: break-word
+td.comment-td
+  max-width: 300px
+  overflow-wrap: break-word
+</style>
