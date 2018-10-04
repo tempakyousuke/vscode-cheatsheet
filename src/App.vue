@@ -57,7 +57,8 @@ export default {
       if (this.command) {
         keyBind = keyBind.filter(value => {
           if (value.command) {
-            return value.command.indexOf(this.command) !== -1
+            let regexp = new RegExp(this.command, 'i')
+            return value.command.match(regexp)
           } else {
             return false
           }
@@ -67,7 +68,8 @@ export default {
       if (this.when) {
         keyBind = keyBind.filter(value => {
           if (value.when) {
-            return value.when.indexOf(this.when) !== -1
+            let regexp = new RegExp(this.when, 'i')
+            return value.when.match(regexp)
           } else {
             return false
           }
