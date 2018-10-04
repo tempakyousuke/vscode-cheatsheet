@@ -17,7 +17,7 @@ v-app
               v-data-table(:headers='headers', :items='keyBind' hide-actions expand)
                 template(slot='items', slot-scope="props")
                   td.key-td
-                    | {{props.item.key}}
+                    | {{replaceKey(props.item.key)}}
                   td.command-td
                     | {{props.item.command}}
                   td.when-td
@@ -78,6 +78,23 @@ export default {
       return keyBind
     }
   },
+  methods: {
+    replaceKey (key) {
+      key = key
+        .replace('escape', 'ESC')
+        .replace('oem_1', ':')
+        .replace('oem_2', '/')
+        .replace('oem_3', '@')
+        .replace('oem_4', '[')
+        .replace('oem_5', '\'')
+        .replace('oem_6', ']')
+        .replace('oem_comma', ',')
+        .replace('oem_plus', '＋')
+        .replace('oem_minus', '－')
+        .replace('oem_period', '.')
+      return key
+    },
+  }
 }
 </script>
 <style lang='sass' scoped>
