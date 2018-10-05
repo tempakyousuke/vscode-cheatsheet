@@ -22,7 +22,13 @@ v-app
                   v-btn(color="success" @click="setPreset('terminal')") ターミナル
                   v-btn(color="success" @click="setPreset('tree')") ツリービュー
                   v-btn(color="success" @click="setPreset('breadcrumbs')") パンくず
-        v-flex(xs12)
+              v-card
+                v-card-title OSを選択
+                v-card-text
+                  v-radio-group(v-model="os" row @change='osUpdate')
+                    v-radio(label="windows" value="0")
+                    v-radio(label="linux" value="1")
+                    v-radio(label="osx" value="2")
           v-card
             v-card-text
               v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。' v-model='defaultJson' @change='defaultJsonUpdate')
@@ -46,7 +52,9 @@ v-app
 </template>
 
 <script>
-import defaultKeyBind from './default_keys.json'
+import windowsDefault from './default_keys.json'
+import linuxDefault from './linux_keys.json'
+import osxDefault from './osx_keys.json'
 import { commandComments } from './command_comments.js'
 import stripJsonComments from 'strip-json-comments'
 
@@ -102,15 +110,20 @@ export default {
       },
       customJson: '',
       defaultJson: '',
-      commandComments: commandComments
+      commandComments: commandComments,
+      os: '0'
     }
   },
   computed: {
+    osDefaultKeyBind () {
+      const keyBinds = [windowsDefault, linuxDefault, osxDefault]
+      return keyBinds[this.os]
+    },
     defaultKeyBind () {
       try {
         return JSON.parse(stripJsonComments(this.defaultJson))
       } catch (e) {
-        return defaultKeyBind
+        return this.osDefaultKeyBind
       }
     },
     customKeybind () {
@@ -188,6 +201,9 @@ export default {
     },
     customJsonUpdate (value) {
       localStorage.setItem('custom_json', value)
+    },
+    osUpdate (value) {
+      localStorage.setItem('os', value)
     }
   },
   created () {
@@ -198,6 +214,10 @@ export default {
     json = localStorage.getItem('custom_json')
     if (json) {
       this.customJson = json
+    }
+    let os = localStorage.getItem('os')
+    if (os) {
+      this.os = os
     }
   }
 }
