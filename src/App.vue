@@ -48,6 +48,7 @@ v-app
 <script>
 import defaultKeyBind from './default_keys.json'
 import { commandComments } from './command_comments.js'
+import stripJsonComments from 'strip-json-comments'
 
 export default {
   name: 'App',
@@ -102,13 +103,41 @@ export default {
       customJson: '',
       defaultJson: '',
       commandComments: commandComments
-      }
     }
   },
   computed: {
+    defaultKeyBind () {
+      try {
+        return JSON.parse(stripJsonComments(this.defaultJson))
+      } catch (e) {
+        return defaultKeyBind
+      }
+    },
+    customKeybind () {
+      let data
+      try {
+        data = JSON.parse(stripJsonComments(this.customJson))
+      } catch (e) {
+        data = []
+      }
+      return data
+    },
+    mergedKeyBind () {
+      let keyBind = JSON.parse(JSON.stringify(this.defaultKeyBind))
+      for (let value of this.customKeybind) {
+        let index = keyBind.findIndex((el) => {
+          return (el.key === value.key) && (el.when === value.when)
+        })
+        if (index !== -1) {
+          keyBind[index].command = value.command
+        } else {
+          keyBind.push(value)
+        }
+      }
+      return keyBind
+    },
     keyBind () {
-      let keyBind = Object.assign([], defaultKeyBind)
-
+      let keyBind = Object.assign([], this.mergedKeyBind)
       if (this.command) {
         keyBind = keyBind.filter(value => {
           if (value.command) {
