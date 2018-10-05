@@ -150,6 +150,22 @@ export default {
     setPreset (key) {
       this.command = this.preset[key].command
       this.when = this.preset[key].when
+    },
+    defaultJsonUpdate (value) {
+      localStorage.setItem('default_json', value)
+    },
+    customJsonUpdate (value) {
+      localStorage.setItem('custom_json', value)
+    }
+  },
+  created () {
+    let json = localStorage.getItem('default_json')
+    if (json) {
+      this.defaultJson = json
+    }
+    json = localStorage.getItem('custom_json')
+    if (json) {
+      this.customJson = json
     }
   }
 }
