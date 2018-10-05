@@ -166,6 +166,7 @@ export default {
     replaceKey (key) {
       key = key
         .replace('escape', 'ESC')
+        .replace('escape', 'ESC')
         .replace('oem_1', ':')
         .replace('oem_2', '/')
         .replace('oem_3', '@')
