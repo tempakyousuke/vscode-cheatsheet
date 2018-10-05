@@ -23,6 +23,11 @@ v-app
                   v-btn(color="success" @click="setPreset('tree')") ツリービュー
                   v-btn(color="success" @click="setPreset('breadcrumbs')") パンくず
         v-flex(xs12)
+          v-card
+            v-card-text
+              v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。' v-model='defaultJson' @change='defaultJsonUpdate')
+              v-textarea(box label='カスタムjson' hint='whenとkeyが一致するものは上書きし、そうでなければ追加します' v-model='customJson' @change='customJsonUpdate')
+        v-flex(xs12)
           v-card.text-xs-left
             v-card-text
               v-data-table(:headers='headers', :items='keyBind' hide-actions expand)
@@ -92,6 +97,9 @@ export default {
           command: 'breadcrumbs',
           when: ''
         }
+      },
+      customJson: '',
+      defaultJson: '',
       }
     }
   },
