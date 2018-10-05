@@ -23,6 +23,11 @@ v-app
                   v-btn(color="success" @click="setPreset('tree')") ツリービュー
                   v-btn(color="success" @click="setPreset('breadcrumbs')") パンくず
         v-flex(xs12)
+          v-card
+            v-card-text
+              v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。' v-model='defaultJson' @change='defaultJsonUpdate')
+              v-textarea(box label='カスタムjson' hint='whenとkeyが一致するものは上書きし、そうでなければ追加します' v-model='customJson' @change='customJsonUpdate')
+        v-flex(xs12)
           v-card.text-xs-left
             v-card-text
               v-data-table(:headers='headers', :items='keyBind' hide-actions expand)
@@ -34,7 +39,7 @@ v-app
                   td.when-td
                     | {{props.item.when}}
                   td.comment-td
-                    | {{props.item.comment}}
+                    | {{commandComments[props.item.command]}}
   v-footer(:fixed='fixed', app='')
     span © 2017
 
@@ -42,6 +47,8 @@ v-app
 
 <script>
 import defaultKeyBind from './default_keys.json'
+import { commandComments } from './command_comments.js'
+import stripJsonComments from 'strip-json-comments'
 
 export default {
   name: 'App',
@@ -92,13 +99,45 @@ export default {
           command: 'breadcrumbs',
           when: ''
         }
-      }
+      },
+      customJson: '',
+      defaultJson: '',
+      commandComments: commandComments
     }
   },
   computed: {
+    defaultKeyBind () {
+      try {
+        return JSON.parse(stripJsonComments(this.defaultJson))
+      } catch (e) {
+        return defaultKeyBind
+      }
+    },
+    customKeybind () {
+      let data
+      try {
+        data = JSON.parse(stripJsonComments(this.customJson))
+      } catch (e) {
+        data = []
+      }
+      return data
+    },
+    mergedKeyBind () {
+      let keyBind = JSON.parse(JSON.stringify(this.defaultKeyBind))
+      for (let value of this.customKeybind) {
+        let index = keyBind.findIndex((el) => {
+          return (el.key === value.key) && (el.when === value.when)
+        })
+        if (index !== -1) {
+          keyBind[index].command = value.command
+        } else {
+          keyBind.push(value)
+        }
+      }
+      return keyBind
+    },
     keyBind () {
-      let keyBind = Object.assign([], defaultKeyBind)
-
+      let keyBind = Object.assign([], this.mergedKeyBind)
       if (this.command) {
         keyBind = keyBind.filter(value => {
           if (value.command) {
@@ -142,6 +181,22 @@ export default {
     setPreset (key) {
       this.command = this.preset[key].command
       this.when = this.preset[key].when
+    },
+    defaultJsonUpdate (value) {
+      localStorage.setItem('default_json', value)
+    },
+    customJsonUpdate (value) {
+      localStorage.setItem('custom_json', value)
+    }
+  },
+  created () {
+    let json = localStorage.getItem('default_json')
+    if (json) {
+      this.defaultJson = json
+    }
+    json = localStorage.getItem('custom_json')
+    if (json) {
+      this.customJson = json
     }
   }
 }

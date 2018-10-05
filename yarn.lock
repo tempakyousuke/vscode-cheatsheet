@@ -6746,7 +6746,7 @@ strip-json-comments-loader@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/strip-json-comments-loader/-/strip-json-comments-loader-0.0.2.tgz#add6be37feeb8b7c610d8743230092d8eaf416a8"
 
-strip-json-comments@~2.0.1:
+strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
