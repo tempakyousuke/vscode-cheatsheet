@@ -39,7 +39,7 @@ v-app
                   td.when-td
                     | {{props.item.when}}
                   td.comment-td
-                    | {{props.item.comment}}
+                    | {{commandComments[props.item.command]}}
   v-footer(:fixed='fixed', app='')
     span © 2017
 
@@ -47,6 +47,7 @@ v-app
 
 <script>
 import defaultKeyBind from './default_keys.json'
+import { commandComments } from './command_comments.js'
 
 export default {
   name: 'App',
@@ -100,6 +101,7 @@ export default {
       },
       customJson: '',
       defaultJson: '',
+      commandComments: commandComments
       }
     }
   },
