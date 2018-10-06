@@ -223,6 +223,7 @@ export default {
           command: this.command,
           when:this.when
         })
+        localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
       }
     },
     setCustomPreset (index) {
@@ -242,6 +243,10 @@ export default {
     let os = localStorage.getItem('os')
     if (os) {
       this.os = os
+    }
+    let customPreset = localStorage.getItem('custom_preset')
+    if (customPreset) {
+      this.customPreset = JSON.parse(customPreset)
     }
   }
 }
