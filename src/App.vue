@@ -12,6 +12,14 @@ v-app
                 v-text-field(v-model='command' label="command")
                 v-text-field(v-model='when' label="when")
               v-card.text-xs-left
+                v-card-title プリセット追加
+                v-card-text
+                  v-layout(row )
+                    v-flex( xs12 sm6 md3)
+                      v-text-field(v-model='custom_name' label="プリセット名" hint='現在の検索条件をプリセットとして保存します')
+                    v-flex( xs12 sm6 md3)
+                      v-btn(color="error" @click="addPreset") 追加
+              v-card.text-xs-left
                 v-card-title プリセット
                 v-card-text
                   v-btn(color="success" @click="setPreset('cursor')") 移動
@@ -219,6 +227,9 @@ export default {
     if (os) {
       this.os = os
     }
+  },
+  addPreset () {
+
   }
 }
 </script>
