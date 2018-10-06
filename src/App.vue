@@ -16,7 +16,7 @@ v-app
                 v-card-text
                   v-layout(row )
                     v-flex( xs12 sm6 md3)
-                      v-text-field(v-model='custom_name' label="プリセット名" hint='現在の検索条件をプリセットとして保存します')
+                      v-text-field(v-model='customName' label="プリセット名" hint='現在の検索条件をプリセットとして保存します')
                     v-flex( xs12 sm6 md3)
                       v-btn(color="error" @click="addPreset") 追加
               v-card.text-xs-left
@@ -116,6 +116,8 @@ export default {
           when: ''
         }
       },
+      customName: '',
+      custom_preset: [],
       customJson: '',
       defaultJson: '',
       commandComments: commandComments,
@@ -212,6 +214,15 @@ export default {
     },
     osUpdate (value) {
       localStorage.setItem('os', value)
+    },
+    addPreset () {
+      if ((this.command || thi.when) && this.customName) {
+        this.custom_preset.push({
+          name:this.customName,
+          command: this.command,
+          when:this.when
+        })
+      }
     }
   },
   created () {
@@ -227,9 +238,6 @@ export default {
     if (os) {
       this.os = os
     }
-  },
-  addPreset () {
-
   }
 }
 </script>
