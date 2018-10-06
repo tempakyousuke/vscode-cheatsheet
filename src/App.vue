@@ -30,6 +30,7 @@ v-app
                   v-btn(color="success" @click="setPreset('terminal')") ターミナル
                   v-btn(color="success" @click="setPreset('tree')") ツリービュー
                   v-btn(color="success" @click="setPreset('breadcrumbs')") パンくず
+                  v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)") {{item.name}}
               v-card
                 v-card-title OSを選択
                 v-card-text
@@ -117,7 +118,7 @@ export default {
         }
       },
       customName: '',
-      custom_preset: [],
+      customPreset: [],
       customJson: '',
       defaultJson: '',
       commandComments: commandComments,
@@ -216,13 +217,17 @@ export default {
       localStorage.setItem('os', value)
     },
     addPreset () {
-      if ((this.command || thi.when) && this.customName) {
-        this.custom_preset.push({
+      if ((this.command || this.when) && this.customName) {
+        this.customPreset.push({
           name:this.customName,
           command: this.command,
           when:this.when
         })
       }
+    },
+    setCustomPreset (index) {
+      this.when = this.customPreset[index].when
+      this.command = this.customPreset[index].command
     }
   },
   created () {
