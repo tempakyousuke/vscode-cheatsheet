@@ -12,6 +12,14 @@ v-app
                 v-text-field(v-model='command' label="command")
                 v-text-field(v-model='when' label="when")
               v-card.text-xs-left
+                v-card-title プリセット追加
+                v-card-text
+                  v-layout(row )
+                    v-flex( xs12 sm6 md3)
+                      v-text-field(v-model='customName' label="プリセット名" hint='現在の検索条件をプリセットとして保存します')
+                    v-flex( xs12 sm6 md3)
+                      v-btn(color="error" @click="addPreset") 追加
+              v-card.text-xs-left
                 v-card-title プリセット
                 v-card-text
                   v-btn(color="success" @click="setPreset('cursor')") 移動
@@ -22,6 +30,11 @@ v-app
                   v-btn(color="success" @click="setPreset('terminal')") ターミナル
                   v-btn(color="success" @click="setPreset('tree')") ツリービュー
                   v-btn(color="success" @click="setPreset('breadcrumbs')") パンくず
+                  v-layout(row)
+                    v-flex(v-for="(item, index) in customPreset" )
+                      v-btn(color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
+                      v-icon(@click="deletePreset(index)")
+                        | delete
               v-card
                 v-card-title OSを選択
                 v-card-text
@@ -108,6 +121,8 @@ export default {
           when: ''
         }
       },
+      customName: '',
+      customPreset: [],
       customJson: '',
       defaultJson: '',
       commandComments: commandComments,
@@ -204,6 +219,24 @@ export default {
     },
     osUpdate (value) {
       localStorage.setItem('os', value)
+    },
+    addPreset () {
+      if ((this.command || this.when) && this.customName) {
+        this.customPreset.push({
+          name: this.customName,
+          command: this.command,
+          when: this.when
+        })
+        localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
+      }
+    },
+    setCustomPreset (index) {
+      this.when = this.customPreset[index].when
+      this.command = this.customPreset[index].command
+    },
+    deletePreset (index) {
+      this.customPreset.splice(index, 1)
+      localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
     }
   },
   created () {
@@ -218,6 +251,10 @@ export default {
     let os = localStorage.getItem('os')
     if (os) {
       this.os = os
+    }
+    let customPreset = localStorage.getItem('custom_preset')
+    if (customPreset) {
+      this.customPreset = JSON.parse(customPreset)
     }
   }
 }
