@@ -8,10 +8,14 @@ v-app
         v-flex(xs12)
           v-card
             v-card-text
-              v-form
+              v-card
+                v-card-title formを隠す
+                v-card-text
+                  v-switch(v-model='hideForm')
+              v-form(v-if='!hideForm')
                 v-text-field(v-model='command' label="command")
                 v-text-field(v-model='when' label="when")
-              v-card.text-xs-left
+              v-card.text-xs-left(v-if='!hideForm')
                 v-card-title プリセット追加
                 v-card-text
                   v-layout(row )
@@ -35,14 +39,14 @@ v-app
                       v-btn(color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
                       v-icon(@click="deletePreset(index)")
                         | delete
-              v-card
+              v-card(v-if='!hideForm')
                 v-card-title OSを選択
                 v-card-text
                   v-radio-group(v-model="os" row @change='osUpdate')
                     v-radio(label="windows" value="0")
                     v-radio(label="linux" value="1")
                     v-radio(label="osx" value="2")
-          v-card
+          v-card(v-if='!hideForm')
             v-card-text
               v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。' v-model='defaultJson' @change='defaultJsonUpdate')
               v-textarea(box label='カスタムjson' hint='whenとkeyが一致するものは上書きし、そうでなければ追加します' v-model='customJson' @change='customJsonUpdate')
@@ -126,6 +130,7 @@ export default {
       customJson: '',
       defaultJson: '',
       commandComments: commandComments,
+      hideForm: false,
       os: '0'
     }
   },
