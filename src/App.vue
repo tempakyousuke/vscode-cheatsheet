@@ -18,6 +18,7 @@ v-app
               v-form(v-if='!hideForm')
                 v-text-field(v-model='command' label="command" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
                 v-text-field(v-model='when' label="when" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
+                v-textarea(box label='commandフィルターを無視' hint='ここに入力したcommandはcommandフィルターで除外されません。改行で複数コマンド登録' v-model='contains')
               v-card.text-xs-left(v-if='!hideForm')
                 v-card-title プリセット追加
                 v-card-text

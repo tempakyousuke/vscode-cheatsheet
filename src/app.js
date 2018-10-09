@@ -14,6 +14,7 @@ export default {
       title: 'Vuetify.js',
       command: '',
       when: '',
+      contains: '',
       preset: {
         cursor: {
           command: 'cursor',
@@ -21,31 +22,38 @@ export default {
         },
         select: {
           command: 'select',
-          when: ''
+          when: '',
+          contains: ''
         },
         fold: {
           command: 'fold',
-          when: ''
+          when: '',
+          contains: ''
         },
         delete: {
           command: 'delete',
-          when: ''
+          when: '',
+          contains: ''
         },
         focus: {
           command: 'focus',
-          when: ''
+          when: '',
+          contains: ''
         },
         terminal: {
           command: 'terminal',
-          when: ''
+          when: '',
+          contains: ''
         },
         tree: {
           command: '',
-          when: 'Explorer'
+          when: 'Explorer',
+          contains: ''
         },
         breadcrumbs: {
           command: 'breadcrumbs',
-          when: ''
+          when: '',
+          contains: ''
         }
       },
       customName: '',
@@ -57,7 +65,7 @@ export default {
       hideCommand: false,
       hideWhen: false,
       hideComment: false,
-      os: '0'
+      os: '0',
     }
   },
   computed: {
@@ -115,7 +123,7 @@ export default {
       if (this.command) {
         let commands = this.command.split(' ')
         for (let value of commands) {
-          keyBind = this.keyFilter(keyBind, 'command', value)
+          keyBind = this.keyFilter(keyBind, 'command', value, this.contains)
         }
       }
 
@@ -148,6 +156,7 @@ export default {
     setPreset(key) {
       this.command = this.preset[key].command
       this.when = this.preset[key].when
+      this.contains = this.preset[key].contains
     },
     defaultJsonUpdate(value) {
       localStorage.setItem('default_json', value)
@@ -159,11 +168,12 @@ export default {
       localStorage.setItem('os', value)
     },
     addPreset() {
-      if ((this.command || this.when) && this.customName) {
+      if ((this.command || this.when || this.contains) && this.customName) {
         this.customPreset.push({
           name: this.customName,
           command: this.command,
-          when: this.when
+          when: this.when,
+          contains: this.contains
         })
         localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
       }
@@ -171,13 +181,18 @@ export default {
     setCustomPreset(index) {
       this.when = this.customPreset[index].when
       this.command = this.customPreset[index].command
+      this.contains = this.customPreset[index].contains
     },
     deletePreset(index) {
       this.customPreset.splice(index, 1)
       localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
     },
-    keyFilter(keyBind, key, str) {
+    keyFilter(keyBind, key, str, contains = '') {
+      let contains_arr = contains.split("\n")
       keyBind = keyBind.filter(value => {
+        if (contains_arr.indexOf(value.command) !== -1) {
+          return true
+        }
         if (!value[key]) {
           return false
         }
