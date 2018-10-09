@@ -9,9 +9,12 @@ v-app
           v-card
             v-card-text
               v-card
-                v-card-title formを隠す
                 v-card-text
-                  v-switch(v-model='hideForm')
+                  v-layout(row justify-start='true' align-content-start)
+                    v-switch(v-model='hideForm' label='フォームを隠す')
+                    v-switch(v-model='hideCommand' label='commandを隠す')
+                    v-switch(v-model='hideWhen' label='whenを隠す')
+                    v-switch(v-model='hideComment' label='コメントを隠す')
               v-form(v-if='!hideForm')
                 v-text-field(v-model='command' label="command")
                 v-text-field(v-model='when' label="when")
@@ -57,11 +60,11 @@ v-app
                 template(slot='items', slot-scope="props")
                   td.key-td
                     | {{replaceKey(props.item.key)}}
-                  td.command-td
+                  td.command-td(v-if='!hideCommand')
                     | {{props.item.command}}
-                  td.when-td
+                  td.when-td(v-if='!hideWhen')
                     | {{props.item.when}}
-                  td.comment-td
+                  td.comment-td(v-if='!hideComment')
                     | {{commandComments[props.item.command]}}
   v-footer(:fixed='fixed', app='')
     span © 2017
@@ -81,12 +84,6 @@ export default {
   },
   data () {
     return {
-      headers: [
-        { text: 'key', value: 'key', sortable: false },
-        { text: 'command', value: 'command', sortable: false },
-        { text: 'when', value: 'when', sortable: false },
-        { text: 'コメント', value: 'comment', sortable: false }
-      ],
       fixed: false,
       title: 'Vuetify.js',
       command: '',
@@ -131,10 +128,28 @@ export default {
       defaultJson: '',
       commandComments: commandComments,
       hideForm: false,
+      hideCommand: false,
+      hideWhen: false,
+      hideComment: false,
       os: '0'
     }
   },
   computed: {
+    headers () {
+      let headers = [
+        { text: 'key', value: 'key', sortable: false }
+      ]
+      if (!this.hideCommand) {
+        headers.push({ text: 'command', value: 'command', sortable: false })
+      }
+      if (!this.hideWhen) {
+        headers.push({ text: 'when', value: 'when', sortable: false })
+      }
+      if (!this.hideComment) {
+        headers.push({ text: 'コメント', value: 'comment', sortable: false })
+      }
+      return headers
+    },
     osDefaultKeyBind () {
       const keyBinds = [windowsDefault, linuxDefault, osxDefault]
       return keyBinds[this.os]
