@@ -113,25 +113,17 @@ export default {
     keyBind() {
       let keyBind = Object.assign([], this.mergedKeyBind)
       if (this.command) {
-        keyBind = keyBind.filter(value => {
-          if (value.command) {
-            let regexp = new RegExp(this.command, 'i')
-            return value.command.match(regexp)
-          } else {
-            return false
-          }
-        })
+        let commands = this.command.split(' ')
+        for (let value of commands) {
+          keyBind = this.keyFilter(keyBind, 'command', value)
+        }
       }
 
       if (this.when) {
-        keyBind = keyBind.filter(value => {
-          if (value.when) {
-            let regexp = new RegExp(this.when, 'i')
-            return value.when.match(regexp)
-          } else {
-            return false
-          }
-        })
+        let whens = this.when.split(' ')
+        for (let value of whens) {
+          keyBind = this.keyFilter(keyBind, 'when', value)
+        }      
       }
       return keyBind
     }
@@ -183,6 +175,20 @@ export default {
     deletePreset(index) {
       this.customPreset.splice(index, 1)
       localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
+    },
+    keyFilter(keyBind, key, str) {
+      keyBind = keyBind.filter(value => {
+        if (!value[key]) {
+          return false
+        }
+        if (str[0] === '-') {
+          let regexp = new RegExp(str.slice(1), 'i')
+          return !value[key].match(regexp)
+        }      
+        let regexp = new RegExp(str, 'i')
+        return value[key].match(regexp)
+      })
+      return keyBind
     }
   },
   created() {
