@@ -16,8 +16,8 @@ v-app
                     v-switch(v-model='hideWhen' label='whenを隠す')
                     v-switch(v-model='hideComment' label='コメントを隠す')
               v-form(v-if='!hideForm')
-                v-text-field(v-model='command' label="command")
-                v-text-field(v-model='when' label="when")
+                v-text-field(v-model='command' label="command" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
+                v-text-field(v-model='when' label="when" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
               v-card.text-xs-left(v-if='!hideForm')
                 v-card-title プリセット追加
                 v-card-text
