@@ -96,7 +96,7 @@ export default {
       if (this.command) {
         let commands = this.command.split(' ')
         for (let value of commands) {
-          keyBind = this.keyFilter(keyBind, 'command', value, this.contains)
+          keyBind = this.keyFilter(keyBind, 'command', value)
         }
       }
 
@@ -104,7 +104,7 @@ export default {
         let whens = this.when.split(' ')
         for (let value of whens) {
           keyBind = this.keyFilter(keyBind, 'when', value)
-        }      
+        }
       }
       return keyBind
     }
@@ -126,10 +126,10 @@ export default {
         .replace('oem_period', '.')
       return key
     },
-    setPreset(key) {
-      this.command = this.preset[key].command
-      this.when = this.preset[key].when
-      this.contains = this.preset[key].contains
+    setPreset(index) {
+      this.command = this.preset[index].command
+      this.when = this.preset[index].when
+      this.contains = this.preset[index].contains
     },
     defaultJsonUpdate(value) {
       localStorage.setItem('default_json', value)
@@ -160,10 +160,10 @@ export default {
       this.customPreset.splice(index, 1)
       localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
     },
-    keyFilter(keyBind, key, str, contains = '') {
-      let contains_arr = contains.split("\n")
+    keyFilter(keyBind, key, str) {
+      let containsArr = this.contains.split("\n")
       keyBind = keyBind.filter(value => {
-        if (contains_arr.indexOf(value.command) !== -1) {
+        if (containsArr.indexOf(value.command) !== -1) {
           return true
         }
         if (!value[key]) {
@@ -172,7 +172,7 @@ export default {
         if (str[0] === '-') {
           let regexp = new RegExp(str.slice(1), 'i')
           return !value[key].match(regexp)
-        }      
+        }
         let regexp = new RegExp(str, 'i')
         return value[key].match(regexp)
       })
