@@ -15,47 +15,20 @@ export default {
       command: '',
       when: '',
       contains: '',
-      preset: {
-        cursor: {
-          command: 'cursor',
-          when: ''
-        },
-        select: {
-          command: 'select',
+      preset: [
+        {
+          name: '一般',
+          command: 'hogemoge',
           when: '',
-          contains: ''
+          contains: "workbench.action.showCommands\nworkbench.action.quickOpen\nworkbench.action.openSettings\nworkbench.action.closeWindow\nworkbench.action.newWindow\nworkbench.action.openGlobalKeybindings\n",
         },
-        fold: {
-          command: 'fold',
-          when: '',
-          contains: ''
-        },
-        delete: {
-          command: 'delete',
-          when: '',
-          contains: ''
-        },
-        focus: {
-          command: 'focus',
-          when: '',
-          contains: ''
-        },
-        terminal: {
-          command: 'terminal',
-          when: '',
-          contains: ''
-        },
-        tree: {
-          command: '',
-          when: 'Explorer',
-          contains: ''
-        },
-        breadcrumbs: {
-          command: 'breadcrumbs',
-          when: '',
-          contains: ''
+        {
+          name: '基本',
+          command: '-cancel -close -foldlevel -suggest -snippet -inplace -organize -break',
+          when: 'text focus -provider -interactive',
+          contains: "editor.action.toggleWordWrap\n"
         }
-      },
+      ],
       customName: '',
       customPreset: [],
       customJson: '',

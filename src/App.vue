@@ -30,14 +30,7 @@ v-app
               v-card.text-xs-left
                 v-card-title プリセット
                 v-card-text
-                  v-btn(color="success" @click="setPreset('cursor')") 移動
-                  v-btn(color="success" @click="setPreset('select')") 選択
-                  v-btn(color="success" @click="setPreset('fold')") フォールド
-                  v-btn(color="success" @click="setPreset('delete')") 削除
-                  v-btn(color="success" @click="setPreset('focus')") フォーカス
-                  v-btn(color="success" @click="setPreset('terminal')") ターミナル
-                  v-btn(color="success" @click="setPreset('tree')") ツリービュー
-                  v-btn(color="success" @click="setPreset('breadcrumbs')") パンくず
+                  v-btn(v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
                   v-layout(row)
                     v-flex(v-for="(item, index) in customPreset" )
                       v-btn(color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
