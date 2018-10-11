@@ -18,7 +18,7 @@ v-app
               v-form(v-if='!hideForm')
                 v-text-field(v-model='command' label="command" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
                 v-text-field(v-model='when' label="when" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
-                v-textarea(box label='commandフィルターを無視' hint='ここに入力したcommandはcommandフィルターで除外されません。改行で複数コマンド登録' v-model='contains')
+                v-textarea(box label='常に表示' hint='ここに記述したcommandはフィルターで除外されません。改行で複数コマンド登録' v-model='contains')
               v-card.text-xs-left(v-if='!hideForm')
                 v-card-title プリセット追加
                 v-card-text
@@ -45,8 +45,8 @@ v-app
                     v-radio(label="osx" value="2")
           v-card(v-if='!hideForm')
             v-card-text
-              v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。' v-model='defaultJson' @change='defaultJsonUpdate')
-              v-textarea(box label='カスタムjson' hint='whenとkeyが一致するものは上書きし、そうでなければ追加します' v-model='customJson' @change='customJsonUpdate')
+              v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。拡張機能等でキーバインドが変わっている人は自分のkeybindings.jsonを貼りつけてください' v-model='defaultJson' @change='defaultJsonUpdate')
+              v-textarea(box label='カスタムjson' hint='自分でカスタマイズしたkeybind.jsonはこちらに貼り付けてください。' v-model='customJson' @change='customJsonUpdate')
         v-flex(xs12)
           v-card.text-xs-left
             v-card-text
