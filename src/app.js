@@ -156,6 +156,9 @@ export default {
     osUpdate(value) {
       localStorage.setItem('os', value)
     },
+    saveHideForm(value) {
+      localStorage.setItem('hideForm', JSON.stringify(value))
+    },
     addPreset() {
       if ((this.command || this.when || this.contains) && this.customName) {
         this.customPreset.push({
@@ -211,6 +214,10 @@ export default {
     let customPreset = localStorage.getItem('custom_preset')
     if (customPreset) {
       this.customPreset = JSON.parse(customPreset)
+    }
+    let hideForm = localStorage.getItem('hideForm')
+    if (hideForm) {
+      this.hideForm = JSON.parse(hideForm)
     }
   }
 }

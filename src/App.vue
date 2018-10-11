@@ -11,7 +11,7 @@ v-app
               v-card
                 v-card-text
                   v-layout(row justify-start='true' align-content-start)
-                    v-switch(v-model='hideForm' label='フォームを隠す')
+                    v-switch(v-model='hideForm' label='フォームを隠す' @change="saveHideForm")
                     v-switch(v-model='hideCommand' label='commandを隠す')
                     v-switch(v-model='hideWhen' label='whenを隠す')
                     v-switch(v-model='hideComment' label='コメントを隠す')
