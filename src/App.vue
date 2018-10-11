@@ -62,7 +62,6 @@ v-app
                     | {{commandComments[props.item.command]}}
     v-layout(row='', justify-center='')
       v-dialog(v-model='jsonDialog', persistent='', max-width='290')
-        v-btn(slot='activator', color='primary', dark='') Open Dialog
         v-card
           v-card-title.headline JSONのパースに失敗しました
           v-card-text
