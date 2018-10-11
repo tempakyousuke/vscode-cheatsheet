@@ -39,6 +39,8 @@ export default {
       hideWhen: false,
       hideComment: false,
       os: '0',
+      jsonDialog: false,
+      jsonError: ''
     }
   },
   computed: {
@@ -63,7 +65,7 @@ export default {
     },
     defaultKeyBind() {
       try {
-        return JSON.parse(stripJsonComments(this.defaultJson))
+        return JSON.parse(this.defaultJson)
       } catch (e) {
         return this.osDefaultKeyBind
       }
@@ -71,7 +73,7 @@ export default {
     customKeybind() {
       let data
       try {
-        data = JSON.parse(stripJsonComments(this.customJson))
+        data = JSON.parse(this.customJson)
       } catch (e) {
         data = []
       }
@@ -132,9 +134,23 @@ export default {
       this.contains = this.preset[index].contains
     },
     defaultJsonUpdate(value) {
+      this.defaultJson = stripJsonComments(value)
+      try {
+        JSON.parse(this.defaultJson)
+      } catch (e) {
+        this.jsonError = e
+        this.jsonDialog = true
+      }
       localStorage.setItem('default_json', value)
     },
     customJsonUpdate(value) {
+      this.customJson = stripJsonComments(value)
+      try {
+        JSON.parse(this.customJson)
+      } catch (e) {
+        this.jsonError = e.message
+        this.jsonDialog = true
+      }
       localStorage.setItem('custom_json', value)
     },
     osUpdate(value) {

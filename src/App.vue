@@ -60,6 +60,17 @@ v-app
                     | {{props.item.when}}
                   td.comment-td(v-if='!hideComment')
                     | {{commandComments[props.item.command]}}
+    v-layout(row='', justify-center='')
+      v-dialog(v-model='jsonDialog', persistent='', max-width='290')
+        v-btn(slot='activator', color='primary', dark='') Open Dialog
+        v-card
+          v-card-title.headline JSONのパースに失敗しました
+          v-card-text
+            | {{jsonError}}
+          v-card-actions
+            v-spacer
+            v-btn(color='green darken-1', flat='', @click.native='jsonDialog = false') 閉じる
+
   v-footer(:fixed='fixed', app='')
     span © 2017
 
