@@ -23,10 +23,28 @@ export default {
           contains: "workbench.action.showCommands\nworkbench.action.quickOpen\nworkbench.action.openSettings\nworkbench.action.closeWindow\nworkbench.action.newWindow\nworkbench.action.openGlobalKeybindings\n",
         },
         {
-          name: '基本',
-          command: '-cancel -close -foldlevel -suggest -snippet -inplace -organize -break',
-          when: 'text focus -provider -interactive',
-          contains: "editor.action.toggleWordWrap\n"
+          name: 'フォルダー・ファイルOPEN',
+          command: 'hogemoge',
+          when: '',
+          contains: 'workbench.action.quickOpen\nworkbench.action.files.openFile\nworkbench.action.files.openFolder\nworkbench.action.addRootFolder\n'
+        },
+        {
+          name: 'ウィンドウ・エディタ開閉',
+          command: 'hogemoge',
+          when: '',
+          contains: 'workbench.action.closeActiveEditor\nworkbench.action.closeAllEditors\nworkbench.action.closeAllGroups\nworkbench.action.closeEditorsInGroup\nworkbench.action.closeFolder\n\nworkbench.action.closeUnmodifiedEditors\nworkbench.action.closeWindow\nworkbench.action.files.showOpenedFileInNewWindow\nworkbench.action.newWindow'
+        },
+        {
+          name: 'フォールド',
+          command: 'fold -folder',
+          when: '',
+          contains: ''
+        },
+        {
+          name: '禅モード',
+          command: 'zenmode',
+          when: '',
+          contains: ''
         }
       ],
       customName: '',
@@ -34,7 +52,7 @@ export default {
       customJson: '',
       defaultJson: '',
       commandComments: commandComments,
-      hideForm: false,
+      hideForm: true,
       hideCommand: false,
       hideWhen: false,
       hideComment: false,
@@ -82,13 +100,24 @@ export default {
     mergedKeyBind() {
       let keyBind = JSON.parse(JSON.stringify(this.defaultKeyBind))
       for (let value of this.customKeybind) {
-        let index = keyBind.findIndex((el) => {
-          return (el.key === value.key) && (el.when === value.when)
-        })
-        if (index !== -1) {
-          keyBind[index].command = value.command
+        if (value.command[0] === '-') {
+          // delete keybind
+          let delCommand = value.command.slice(1)
+          let index = keyBind.findIndex((el) => {
+            return (el.key === value.key) && (el.when === value.when) && el.command === delCommand
+          })
+          if (index !== -1) {
+            keyBind.splice(index, 1)
+          }
         } else {
-          keyBind.push(value)
+          let index = keyBind.findIndex((el) => {
+            return (el.key === value.key) && (el.when === value.when)
+          })
+          if (index !== -1) {
+            keyBind[index].command = value.command
+          } else {
+            keyBind.push(value)
+          }
         }
       }
       return keyBind
