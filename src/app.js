@@ -107,6 +107,18 @@ export default {
           keyBind = this.keyFilter(keyBind, 'when', value)
         }
       }
+      let containsArr = this.contains.split('\n')
+      for (let value of containsArr) {
+        let index = keyBind.findIndex(el => el.command === value)
+        if (index === -1) {
+          keyBind.push({
+            key: '',
+            command: value,
+            when: ''
+          })
+        }
+      }
+
       return keyBind
     }
   },
