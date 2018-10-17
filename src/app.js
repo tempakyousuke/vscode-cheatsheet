@@ -22,10 +22,12 @@ export default {
       customJson: '',
       defaultJson: '',
       commandComments: commandComments,
-      hideForm: true,
-      hideCommand: false,
-      hideWhen: false,
-      hideComment: false,
+      options: {
+        hideForm: true,
+        hideCommand: false,
+        hideWhen: false,
+        hideComment: false
+      },
       os: '0',
       jsonDialog: false,
       jsonError: ''
@@ -167,8 +169,8 @@ export default {
     osUpdate(value) {
       localStorage.setItem('os', value)
     },
-    saveHideForm(value) {
-      localStorage.setItem('hideForm', JSON.stringify(value))
+    saveOptions() {
+      localStorage.setItem('options', JSON.stringify(this.options))
     },
     addPreset() {
       if ((this.command || this.when || this.contains) && this.customName) {
@@ -226,9 +228,9 @@ export default {
     if (customPreset) {
       this.customPreset = JSON.parse(customPreset)
     }
-    let hideForm = localStorage.getItem('hideForm')
-    if (hideForm) {
-      this.hideForm = JSON.parse(hideForm)
+    let options = localStorage.getItem('options')
+    if (options) {
+      this.options = JSON.parse(options)
     }
   }
 }

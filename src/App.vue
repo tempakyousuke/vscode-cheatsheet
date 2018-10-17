@@ -11,15 +11,15 @@ v-app
               v-card
                 v-card-text
                   v-layout(row justify-start='true' align-content-start)
-                    v-switch(v-model='hideForm' label='フォームを隠す' @change="saveHideForm")
-                    v-switch(v-model='hideCommand' label='commandを隠す')
-                    v-switch(v-model='hideWhen' label='whenを隠す')
-                    v-switch(v-model='hideComment' label='コメントを隠す')
-              v-form(v-if='!hideForm')
+                    v-switch(v-model='options.hideForm' label='フォームを隠す' @change="saveOptions")
+                    v-switch(v-model='options.hideCommand' label='commandを隠す' @change="saveOptions")
+                    v-switch(v-model='options.hideWhen' label='whenを隠す' @change="saveOptions")
+                    v-switch(v-model='options.hideComment' label='コメントを隠す' @change="saveOptions")
+              v-form(v-if='!options.hideForm')
                 v-text-field(v-model='command' label="command" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
                 v-text-field(v-model='when' label="when" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
                 v-textarea(box label='常に表示' hint='ここに記述したcommandはフィルターで除外されません。改行で複数コマンド登録' v-model='contains')
-              v-card.text-xs-left(v-if='!hideForm')
+              v-card.text-xs-left(v-if='!options.hideForm')
                 v-card-title プリセット追加
                 v-card-text
                   v-layout(row )
@@ -36,14 +36,14 @@ v-app
                       v-btn(color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
                       v-icon(@click="deletePreset(index)")
                         | delete
-              v-card(v-if='!hideForm')
+              v-card(v-if='!options.hideForm')
                 v-card-title OSを選択
                 v-card-text
                   v-radio-group(v-model="os" row @change='osUpdate')
                     v-radio(label="windows" value="0")
                     v-radio(label="linux" value="1")
                     v-radio(label="osx" value="2")
-          v-card(v-if='!hideForm')
+          v-card(v-if='!options.hideForm')
             v-card-text
               v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。拡張機能等でキーバインドが変わっている人は自分のkeybindings.jsonを貼りつけてください' v-model='defaultJson' @change='defaultJsonUpdate')
               v-textarea(box label='カスタムjson' hint='自分でカスタマイズしたkeybind.jsonはこちらに貼り付けてください。' v-model='customJson' @change='customJsonUpdate')
@@ -54,11 +54,11 @@ v-app
                 template(slot='items', slot-scope="props")
                   td.key-td
                     | {{replaceKey(props.item.key)}}
-                  td.command-td(v-if='!hideCommand')
+                  td.command-td(v-if='!options.hideCommand')
                     | {{props.item.command}}
-                  td.when-td(v-if='!hideWhen')
+                  td.when-td(v-if='!options.hideWhen')
                     | {{props.item.when}}
-                  td.comment-td(v-if='!hideComment')
+                  td.comment-td(v-if='!options.hideComment')
                     | {{commandComments[props.item.command]}}
     v-layout(row='', justify-center='')
       v-dialog(v-model='jsonDialog', persistent='', max-width='290')
