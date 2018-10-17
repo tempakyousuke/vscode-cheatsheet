@@ -193,7 +193,7 @@ export default {
       localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
     },
     keyFilter(keyBind, key, str) {
-      let containsArr = this.contains.split("\n")
+      let containsArr = this.contains.split('\n')
       keyBind = keyBind.filter(value => {
         if (containsArr.indexOf(value.command) !== -1) {
           return true
