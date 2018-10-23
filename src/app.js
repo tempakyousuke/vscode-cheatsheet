@@ -133,7 +133,7 @@ export default {
         .replace('oem_2', '/')
         .replace('oem_3', '@')
         .replace('oem_4', '[')
-        .replace('oem_5', '\'')
+        .replace('oem_5', '\\')
         .replace('oem_6', ']')
         .replace('oem_comma', ',')
         .replace('oem_plus', '＋')
