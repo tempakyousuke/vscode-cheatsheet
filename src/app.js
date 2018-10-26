@@ -199,6 +199,7 @@ export default {
       this.when = this.customPreset[index].when
       this.command = this.customPreset[index].command
       this.contains = this.customPreset[index].contains
+      this.customName = this.customPreset[index].name
     },
     deletePreset() {
       if (this.presetIndex === -1) {
