@@ -78,7 +78,7 @@ v-app
 <script>
 import appMix from './app.js'
 export default {
-  mixins:[appMix]
+  mixins: [appMix]
 }
 </script>
 <style lang='sass' scoped>
