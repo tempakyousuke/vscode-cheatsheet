@@ -26,16 +26,18 @@ v-app
                     v-flex( xs12 sm6 md3)
                       v-text-field(v-model='customName' label="プリセット名" hint='現在の検索条件をプリセットとして保存します')
                     v-flex( xs12 sm6 md3)
-                      v-btn(color="error" @click="addPreset") 追加
+                      v-layout(row)
+                        v-btn(v-if="presetIndex === -1" color="primary" @click="addPreset") 追加
+                        v-btn(v-if="presetIndex !== -1" color="primary" @click="updatePreset") 更新
+                        v-btn(v-if="presetIndex !== -1" color="error" @click="deletePreset")
+                          v-icon
+                            | delete
+                          | 削除
               v-card.text-xs-left
                 v-card-title プリセット
                 v-card-text
                   v-btn(v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
-                  v-layout(row)
-                    v-flex(v-for="(item, index) in customPreset" )
-                      v-btn(color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
-                      v-icon(@click="deletePreset(index)")
-                        | delete
+                  v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
               v-card(v-if='!options.hideForm')
                 v-card-title OSを選択
                 v-card-text

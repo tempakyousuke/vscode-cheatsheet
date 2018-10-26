@@ -122,6 +122,9 @@ export default {
       }
 
       return keyBind
+    },
+    presetIndex() {
+      return this.customPreset.findIndex(value => value.name === this.customName)
     }
   },
   methods: {
@@ -183,13 +186,25 @@ export default {
         localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
       }
     },
+    updatePreset() {
+      this.customPreset[this.presetIndex] = {
+        name: this.customName,
+        command: this.command,
+        when: this.when,
+        contains: this.contains
+      }
+      localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
+    },
     setCustomPreset(index) {
       this.when = this.customPreset[index].when
       this.command = this.customPreset[index].command
       this.contains = this.customPreset[index].contains
     },
-    deletePreset(index) {
-      this.customPreset.splice(index, 1)
+    deletePreset() {
+      if (this.presetIndex === -1) {
+        return
+      }
+      this.customPreset.splice(this.presetIndex, 1)
       localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
     },
     keyFilter(keyBind, key, str) {
