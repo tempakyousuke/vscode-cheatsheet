@@ -38,13 +38,13 @@ export default {
       let headers = [
         { text: 'key', value: 'key', sortable: false }
       ]
-      if (!this.hideCommand) {
+      if (!this.options.hideCommand) {
         headers.push({ text: 'command', value: 'command', sortable: false })
       }
-      if (!this.hideWhen) {
+      if (!this.options.hideWhen) {
         headers.push({ text: 'when', value: 'when', sortable: false })
       }
-      if (!this.hideComment) {
+      if (!this.options.hideComment) {
         headers.push({ text: 'コメント', value: 'comment', sortable: false })
       }
       return headers
