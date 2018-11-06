@@ -6,6 +6,18 @@ export const defaultPreset = [
     contains: 'workbench.action.showCommands\nworkbench.action.quickOpen\nworkbench.action.openSettings\nworkbench.action.closeWindow\nworkbench.action.newWindow\nworkbench.action.openGlobalKeybindings\n'
   },
   {
+    name: '編集',
+    command: 'hogemoge',
+    when: '',
+    contains: 'editor.action.insertLineAfter\neditor.action.insertLineBefore\neditor.action.moveLinesDownAction\neditor.action.moveLinesUpAction\neditor.action.copyLinesDownAction\neditor.action.copyLinesUpAction\neditor.action.clipboardCopyAction\neditor.action.clipboardCutAction\neditor.action.clipboardPasteAction\n'
+  },
+  {
+    name: '移動・選択',
+    command: 'hogemoge',
+    when: '',
+    contains: 'cursorBottom\ncursorHome\ncursorBottomSelect\ncursorHomeSelect\ncursorLineStart\ncursorLineEnd\ncursorEnd\ncursorHome\n'
+  },
+  {
     name: 'フォルダー・ファイルOPEN',
     command: 'hogemoge',
     when: '',
@@ -16,6 +28,12 @@ export const defaultPreset = [
     command: 'hogemoge',
     when: '',
     contains: 'workbench.action.closeActiveEditor\nworkbench.action.closeAllEditors\nworkbench.action.closeAllGroups\nworkbench.action.closeEditorsInGroup\nworkbench.action.closeFolder\n\nworkbench.action.closeUnmodifiedEditors\nworkbench.action.closeWindow\nworkbench.action.files.showOpenedFileInNewWindow\nworkbench.action.newWindow'
+  },
+  {
+    name: 'エディタ分割',
+    command: 'hogemoge',
+    when: '',
+    contains: 'workbench.action.splitEditor\nworkbench.action.splitEditorOrthogonal\nworkbench.action.splitEditorDown\nworkbench.action.splitEditorLeft\nworkbench.action.splitEditorRight\nworkbench.action.splitEditorUp\nexplorer.openToSide'
   },
   {
     name: 'フォールド',
