@@ -15,7 +15,7 @@ export const defaultPreset = [
     name: '移動・選択',
     command: 'hogemoge',
     when: '',
-    contains: 'cursorBottom\ncursorHome\ncursorBottomSelect\ncursorHomeSelect\ncursorLineStart\ncursorLineEnd\ncursorEnd\ncursorHome\n'
+    contains: 'cursorBottom\ncursorHome\ncursorBottomSelect\ncursorHomeSelect\ncursorLineStart\ncursorLineEnd\ncursorEnd\ncursorHome\neditor.action.toggleWordWrap\ncursorWordStartLeft\ncursorWordEndRight\nscrollLineUp\nscrollLineDown\nscrollPageUp\nscrollPageDown\neditor.action.jumpToBracket\nworkbench.action.navigateForward\nworkbench.action.navigateBack\nworkbench.action.navigateToLastEditLocation'
   },
   {
     name: 'フォルダー・ファイルOPEN',
