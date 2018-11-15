@@ -4,6 +4,7 @@ import osxDefault from './osx_keys.json'
 import { commandComments } from './command_comments.js'
 import stripJsonComments from 'strip-json-comments'
 import { defaultPreset } from '@/data/default_preset.js'
+import replaceString from 'replace-string'
 
 export default {
   name: 'App',
@@ -142,19 +143,9 @@ export default {
   },
   methods: {
     replaceKey(key) {
-      key = key
-        .replace('escape', 'ESC')
-        .replace('escape', 'ESC')
-        .replace('oem_1', ':')
-        .replace('oem_2', '/')
-        .replace('oem_3', '@')
-        .replace('oem_4', '[')
-        .replace('oem_5', '\\')
-        .replace('oem_6', ']')
-        .replace('oem_comma', ',')
-        .replace('oem_plus', '＋')
-        .replace('oem_minus', '－')
-        .replace('oem_period', '.')
+      Object.entries(this.replaceOption).forEach(([before, after]) => {
+        key = replaceString(key, before, after)
+      });
       return key
     },
     setPreset(index) {
