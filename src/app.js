@@ -30,7 +30,20 @@ export default {
       },
       os: '0',
       jsonDialog: false,
-      jsonError: ''
+      jsonError: '',
+      replaceOption: {
+        'escape': 'ESC',
+        'oem_1': ':',
+        'oem_2': '/',
+        'oem_3': '@',
+        'oem_4': '[',
+        'oem_5': '\\',
+        'oem_6': ']',
+        'oem_comma': ',',
+        'oem_plus': '＋',
+        'oem_minus': '－',
+        'oem_period': '.',
+      }
     }
   },
   computed: {
@@ -195,6 +208,9 @@ export default {
       }
       localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
     },
+    updateReplaceOption() {
+      localStorage.setItem('replaceOption', JSON.stringify(this.replaceOption))
+    },
     setCustomPreset(index) {
       this.when = this.customPreset[index].when
       this.command = this.customPreset[index].command
@@ -247,6 +263,10 @@ export default {
     let options = localStorage.getItem('options')
     if (options) {
       this.options = JSON.parse(options)
+    }
+    let replaceOption = localStorage.getItem('replaceOption')
+    if (replaceOption) {
+      this.replaceOption = JSON.parse(replaceOption)
     }
   }
 }
