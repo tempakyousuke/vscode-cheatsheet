@@ -44,6 +44,17 @@ export default {
         'oem_plus': '＋',
         'oem_minus': '－',
         'oem_period': '.',
+        '[IntlYen]': '¥',
+        '[Quote]': ':',
+        '[Minus]': '-',
+        '[IntlRo]': '_',
+        '[Equal]': '^',
+        '[BracketLeft]': '@',
+        '[Semicolon]': ';',
+        'alt': 'alt',
+        'cmd': 'cmd',
+        'shift': 'shift',
+        'ctrl': 'ctrl'
       }
     }
   },
@@ -255,9 +266,18 @@ export default {
     if (options) {
       this.options = JSON.parse(options)
     }
+
     let replaceOption = localStorage.getItem('replaceOption')
     if (replaceOption) {
       this.replaceOption = JSON.parse(replaceOption)
+    } else {
+      // mac用にデフォルト値を変更
+      if (navigator.userAgent.indexOf('Mac') != -1) {
+        this.replaceOption.alt = '⌥'
+        this.replaceOption.cmd = '⌘'
+        this.replaceOption.shift = '⇧'
+        this.replaceOption.ctrl = '^'
+      }
     }
   }
 }
