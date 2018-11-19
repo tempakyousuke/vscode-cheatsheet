@@ -1,5 +1,4 @@
 import windowsDefault from '@/data/windowsDefaultKeys.json'
-import linuxDefault from './linux_keys.json'
 import osxDefault from '@/data/osxDefaultKeys.json'
 import { commandComments } from './command_comments.js'
 import stripJsonComments from 'strip-json-comments'
@@ -74,15 +73,15 @@ export default {
       }
       return headers
     },
-    osDefaultKeyBind() {
-      const keyBinds = [windowsDefault, linuxDefault, osxDefault]
-      return keyBinds[this.os]
-    },
     defaultKeyBind() {
       try {
         return JSON.parse(this.defaultJson)
       } catch (e) {
-        return this.osDefaultKeyBind
+        if (navigator.userAgent.indexOf('Mac') !== -1) {
+          return osxDefault
+        } else {
+          return windowsDefault
+        }
       }
     },
     customKeybind() {
