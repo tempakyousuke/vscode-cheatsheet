@@ -21,29 +21,6 @@ v-app
               v-textarea(box label='カスタムjson' hint='自分でカスタマイズしたkeybind.jsonはこちらに貼り付けてください。' v-model='customJson' @change='customJsonUpdate')
           v-card
             v-card-text
-              v-form(v-if='!options.hideForm')
-                v-text-field(v-model='command' label="command" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
-                v-text-field(v-model='when' label="when" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
-                v-textarea(box label='常に表示' hint='ここに記述したcommandはフィルターで除外されません。改行で複数コマンド登録' v-model='contains')
-              v-card.text-xs-left(v-if='!options.hideForm')
-                v-card-title プリセット追加
-                v-card-text
-                  v-layout(row )
-                    v-flex( xs12 sm6 md3)
-                      v-text-field(v-model='customName' label="プリセット名" hint='現在の検索条件をプリセットとして保存します')
-                    v-flex( xs12 sm6 md3)
-                      v-layout(row)
-                        v-btn(v-if="presetIndex === -1" color="primary" @click="addPreset") 追加
-                        v-btn(v-if="presetIndex !== -1" color="primary" @click="updatePreset") 更新
-                        v-btn(v-if="presetIndex !== -1" color="error" @click="deletePreset")
-                          v-icon
-                            | delete
-                          | 削除
-              v-card.text-xs-left
-                v-card-title プリセット
-                v-card-text
-                  v-btn(v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
-                  v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
               v-card.mt-3(v-if='!options.hideForm')
                 v-card-title キーバインド置換設定
                 v-card-text
@@ -92,6 +69,29 @@ v-app
                       v-text-field(v-model="replaceOption.shift" label="shift" @change='updateReplaceOption')
                     v-flex(xs6 sm4 md2)
                       v-text-field(v-model="replaceOption.ctrl" label="ctrl" @change='updateReplaceOption')
+              v-form(v-if='!options.hideForm')
+                v-text-field(v-model='command' label="command" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
+                v-text-field(v-model='when' label="when" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
+                v-textarea(box label='常に表示' hint='ここに記述したcommandはフィルターで除外されません。改行で複数コマンド登録' v-model='contains')
+              v-card.text-xs-left(v-if='!options.hideForm')
+                v-card-title プリセット追加
+                v-card-text
+                  v-layout(row )
+                    v-flex( xs12 sm6 md3)
+                      v-text-field(v-model='customName' label="プリセット名" hint='現在の検索条件をプリセットとして保存します')
+                    v-flex( xs12 sm6 md3)
+                      v-layout(row)
+                        v-btn(v-if="presetIndex === -1" color="primary" @click="addPreset") 追加
+                        v-btn(v-if="presetIndex !== -1" color="primary" @click="updatePreset") 更新
+                        v-btn(v-if="presetIndex !== -1" color="error" @click="deletePreset")
+                          v-icon
+                            | delete
+                          | 削除
+              v-card.text-xs-left
+                v-card-title プリセット
+                v-card-text
+                  v-btn(v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
+                  v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
         v-flex(xs12)
           v-card.text-xs-left
             v-card-text
