@@ -15,6 +15,12 @@ v-app
                     v-switch(v-model='options.hideCommand' label='commandを隠す' @change="saveOptions")
                     v-switch(v-model='options.hideWhen' label='whenを隠す' @change="saveOptions")
                     v-switch(v-model='options.hideComment' label='コメントを隠す' @change="saveOptions")
+          v-card(v-if='!options.hideForm')
+            v-card-text
+              v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。拡張機能等でキーバインドが変わっている人は自分のkeybindings.jsonを貼りつけてください' v-model='defaultJson' @change='defaultJsonUpdate')
+              v-textarea(box label='カスタムjson' hint='自分でカスタマイズしたkeybind.jsonはこちらに貼り付けてください。' v-model='customJson' @change='customJsonUpdate')
+          v-card
+            v-card-text
               v-form(v-if='!options.hideForm')
                 v-text-field(v-model='command' label="command" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
                 v-text-field(v-model='when' label="when" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
@@ -86,10 +92,6 @@ v-app
                       v-text-field(v-model="replaceOption.shift" label="shift" @change='updateReplaceOption')
                     v-flex(xs6 sm4 md2)
                       v-text-field(v-model="replaceOption.ctrl" label="ctrl" @change='updateReplaceOption')
-          v-card(v-if='!options.hideForm')
-            v-card-text
-              v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。拡張機能等でキーバインドが変わっている人は自分のkeybindings.jsonを貼りつけてください' v-model='defaultJson' @change='defaultJsonUpdate')
-              v-textarea(box label='カスタムjson' hint='自分でカスタマイズしたkeybind.jsonはこちらに貼り付けてください。' v-model='customJson' @change='customJsonUpdate')
         v-flex(xs12)
           v-card.text-xs-left
             v-card-text
