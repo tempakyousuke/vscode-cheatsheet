@@ -1,6 +1,6 @@
-import windowsDefault from './default_keys.json'
+import windowsDefault from '@/data/windowsDefaultKeys.json'
 import linuxDefault from './linux_keys.json'
-import osxDefault from './osx_keys.json'
+import osxDefault from '@/data/osxDefaultKeys.json'
 import { commandComments } from './command_comments.js'
 import stripJsonComments from 'strip-json-comments'
 import { defaultPreset } from '@/data/default_preset.js'
