@@ -156,7 +156,7 @@ export default {
     replaceKey(key) {
       Object.entries(this.replaceOption).forEach(([before, after]) => {
         key = replaceString(key, before, after)
-      });
+      })
       return key
     },
     setPreset(index) {
