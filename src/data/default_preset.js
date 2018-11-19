@@ -15,7 +15,13 @@ export const defaultPreset = [
     name: '移動・選択',
     command: 'hogemoge',
     when: '',
-    contains: 'cursorBottom\ncursorHome\ncursorBottomSelect\ncursorHomeSelect\ncursorLineStart\ncursorLineEnd\ncursorEnd\ncursorHome\neditor.action.toggleWordWrap\ncursorWordStartLeft\ncursorWordEndRight\nscrollLineUp\nscrollLineDown\nscrollPageUp\nscrollPageDown\neditor.action.jumpToBracket\nworkbench.action.navigateForward\nworkbench.action.navigateBack\nworkbench.action.navigateToLastEditLocation'
+    contains: 'cursorTop\ncursorTopSelect\ncursorBottom\ncursorBottomSelect\ncursorHome\ncursorHomeSelect\ncursorLineStart\ncursorLineEnd\ncursorEnd\ncursorHome\neditor.action.toggleWordWrap\ncursorWordStartLeft\ncursorWordEndRight\nscrollLineUp\nscrollLineDown\nscrollPageUp\nscrollPageDown\neditor.action.jumpToBracket\nworkbench.action.navigateForward\nworkbench.action.navigateBack\nworkbench.action.navigateToLastEditLocation\ncursorWordEndLeft\ncursorWordEndLeftSelect\ncursorWordLeft\ncursorWordLeftSelect\ncursorWordRight\ncursorWordRightSelect\ncursorWordPartLeft\ncursorWordPartLeftSelect\ncursorWordPartRight\ncursorWordPartRightSelect\ncursorWordPartStartLeft\ncursorWordPartStartLeftSelect'
+  },
+  {
+    name: '削除',
+    command: 'hogemoge',
+    when: '',
+    contains: 'deleteWordLeft\ndeleteWordRight\neditor.action.deleteLines\ndeleteAllLeft\ndeleteAllRight\ndeleteWordEndLeft\ndeleteWordEndRight\ndeleteWordPartLeft\ndeleteWordPartRight\ndeleteWordStartLeft\ndeleteWordStartRight'
   },
   {
     name: 'フォルダー・ファイルOPEN',
