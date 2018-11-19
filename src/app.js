@@ -28,7 +28,6 @@ export default {
         hideWhen: false,
         hideComment: false
       },
-      os: '0',
       jsonDialog: false,
       jsonError: '',
       replaceOption: {
@@ -252,10 +251,6 @@ export default {
     json = localStorage.getItem('custom_json')
     if (json) {
       this.customJson = json
-    }
-    let os = localStorage.getItem('os')
-    if (os) {
-      this.os = os
     }
     let customPreset = localStorage.getItem('custom_preset')
     if (customPreset) {

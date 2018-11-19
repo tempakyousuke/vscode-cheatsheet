@@ -38,13 +38,6 @@ v-app
                 v-card-text
                   v-btn(v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
                   v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
-              v-card(v-if='!options.hideForm')
-                v-card-title OSを選択
-                v-card-text
-                  v-radio-group(v-model="os" row @change='osUpdate')
-                    v-radio(label="windows" value="0")
-                    v-radio(label="linux" value="1")
-                    v-radio(label="osx" value="2")
               v-card.mt-3(v-if='!options.hideForm')
                 v-card-title キーバインド置換設定
                 v-card-text
