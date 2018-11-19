@@ -172,7 +172,7 @@ export default {
         this.jsonError = e
         this.jsonDialog = true
       }
-      localStorage.setItem('default_json', value)
+      localStorage.setItem('default_json', this.defaultJson)
     },
     customJsonUpdate(value) {
       this.customJson = stripJsonComments(value)
