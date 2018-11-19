@@ -266,7 +266,7 @@ export default {
       this.replaceOption = JSON.parse(replaceOption)
     } else {
       // mac用にデフォルト値を変更
-      if (navigator.userAgent.indexOf('Mac') != -1) {
+      if (navigator.userAgent.indexOf('Mac') !== -1) {
         this.replaceOption.alt = '⌥'
         this.replaceOption.cmd = '⌘'
         this.replaceOption.shift = '⇧'
