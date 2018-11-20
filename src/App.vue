@@ -3,8 +3,8 @@ v-app
   v-content
     v-container(grid-list-md text-xs-center)
       v-layout(row wrap)
-        v-flex(xs12)
-          img.mb-5(src='@/assets/logo.png', alt='Vuetify.js')
+        v-flex.mb-3(xs12)
+          h1#title VSCode CheatSheet
         v-flex(xs12)
           v-card
             v-card-text
@@ -127,6 +127,10 @@ export default {
 }
 </script>
 <style lang='sass' scoped>
+#title
+  font-size: 50px
+  color: #007ACC
+
 td.key-td
   width: 200px
   padding-right: 20px
