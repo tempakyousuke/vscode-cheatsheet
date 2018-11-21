@@ -80,7 +80,7 @@ export const commandComments = {
   deleteWordStartLeft: '単語の先頭まで削除（左方向）',
   deleteWordStartRight: '単語の先頭まで削除（右方向）',
   'editor.action.addCommentLine': '行コメントを追加(htmlだとtoggle?)',
-  'editor.action.addSelectionToNextFindMatch': '選択している文字列と同じ文字列を次々に選択',
+  'editor.action.addSelectionToNextFindMatch': '選択している文字列(もしくはハイライト)と同じ文字列を次々に選択',
   'editor.action.blockComment': 'ブロックコメントtoggle',
   'editor.action.changeAll': '現在選択しているテキストと同じテキストのすべての終端にカーソルを作成（選択しているテキストがなければカーソルのある単語）',
   'editor.action.clipboardCopyAction': 'コピー(何も選択状態でなければ行をコピー)',
