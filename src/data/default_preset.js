@@ -18,16 +18,22 @@ export const defaultPreset = [
     contains: 'cursorTop\ncursorTopSelect\ncursorBottom\ncursorBottomSelect\ncursorHome\ncursorHomeSelect\ncursorLineStart\ncursorLineEnd\ncursorEnd\ncursorHome\neditor.action.toggleWordWrap\ncursorWordStartLeft\ncursorWordEndRight\nscrollLineUp\nscrollLineDown\nscrollPageUp\nscrollPageDown\neditor.action.jumpToBracket\nworkbench.action.navigateForward\nworkbench.action.navigateBack\nworkbench.action.navigateToLastEditLocation\ncursorWordEndLeft\ncursorWordEndLeftSelect\ncursorWordLeft\ncursorWordLeftSelect\ncursorWordRight\ncursorWordRightSelect\ncursorWordPartLeft\ncursorWordPartLeftSelect\ncursorWordPartRight\ncursorWordPartRightSelect\ncursorWordPartStartLeft\ncursorWordPartStartLeftSelect\neditor.action.smartSelect.grow\neditor.action.smartSelect.shrink'
   },
   {
-    name: '複数選択/マルチカーソル',
-    command: 'hogemoge',
-    when: '',
-    contains: 'workbench.action.toggleMultiCursorModifier\neditor.action.insertCursorAbove\nremoveSecondaryCursors\neditor.action.insertCursorBelow'
-  },
-  {
     name: '削除',
     command: 'hogemoge',
     when: '',
     contains: 'deleteWordLeft\ndeleteWordRight\neditor.action.deleteLines\ndeleteAllLeft\ndeleteAllRight\ndeleteWordEndLeft\ndeleteWordEndRight\ndeleteWordPartLeft\ndeleteWordPartRight\ndeleteWordStartLeft\ndeleteWordStartRight'
+  },
+  {
+    name: '複数選択/マルチカーソル',
+    command: 'hogemoge',
+    when: '',
+    contains: 'workbench.action.toggleMultiCursorModifier\neditor.action.insertCursorAbove\nremoveSecondaryCursors\neditor.action.insertCursorBelow\neditor.action.addSelectionToNextFindMatch\neditor.action.changeAll\neditor.action.selectHighlights'
+  },
+  {
+    name: 'エディタ内検索',
+    command: 'hogemoge',
+    when: '',
+    contains: 'editor.action.webvieweditor.showFind\neditor.action.webvieweditor.hideFind'
   },
   {
     name: 'フォルダー・ファイルOPEN',
