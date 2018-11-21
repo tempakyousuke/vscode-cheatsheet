@@ -31,7 +31,6 @@ export default {
       jsonDialog: false,
       jsonError: '',
       replaceOption: {
-        'escape': 'ESC',
         'oem_1': ':',
         'oem_2': '/',
         'oem_3': '@',
@@ -52,7 +51,13 @@ export default {
         'alt': 'alt',
         'cmd': 'cmd',
         'shift': 'shift',
-        'ctrl': 'ctrl'
+        'ctrl': 'ctrl',
+        'escape': 'escape',
+        'backspace': 'backspace',
+        'home': 'home',
+        'end': 'end',
+        'pageup': 'pageup',
+        'pagedown': 'pagedown'
       }
     }
   },
