@@ -39,7 +39,7 @@ export const defaultPreset = [
     name: 'エディタ内検索',
     command: 'hogemoge',
     when: '',
-    contains: 'editor.action.webvieweditor.showFind\neditor.action.webvieweditor.hideFind'
+    contains: 'editor.action.webvieweditor.showFind\neditor.action.webvieweditor.hideFind\nactions.findWithSelection\neditor.action.moveSelectionToNextFindMatch\neditor.action.nextMatchFindAction'
   },
   {
     name: 'フォルダー・ファイルOPEN',
