@@ -24,6 +24,12 @@ export const defaultPreset = [
     contains: 'deleteWordLeft\ndeleteWordRight\neditor.action.deleteLines\ndeleteAllLeft\ndeleteAllRight\ndeleteWordEndLeft\ndeleteWordEndRight\ndeleteWordPartLeft\ndeleteWordPartRight\ndeleteWordStartLeft\ndeleteWordStartRight'
   },
   {
+    name: '矩型選択',
+    command: 'hogemoge',
+    when: '',
+    contains: 'cursorColumnSelectDown\ncursorColumnSelectLeft\ncursorColumnSelectPageDown\ncursorColumnSelectPageUp\ncursorColumnSelectRight\ncursorColumnSelectUp'
+  },
+  {
     name: '複数選択/マルチカーソル',
     command: 'hogemoge',
     when: '',
