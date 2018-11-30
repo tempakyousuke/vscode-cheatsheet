@@ -33,13 +33,19 @@ export const defaultPreset = [
     name: '複数選択/マルチカーソル',
     command: 'hogemoge',
     when: '',
-    contains: 'workbench.action.toggleMultiCursorModifier\neditor.action.insertCursorAbove\nremoveSecondaryCursors\neditor.action.insertCursorBelow\neditor.action.addSelectionToNextFindMatch\neditor.action.changeAll\neditor.action.selectHighlights'
+    contains: 'workbench.action.toggleMultiCursorModifier\neditor.action.insertCursorAbove\nremoveSecondaryCursors\neditor.action.insertCursorBelow\neditor.action.addSelectionToNextFindMatch\neditor.action.changeAll\neditor.action.selectHighlights\neditor.action.selectAllMatches'
   },
   {
     name: 'エディタ内検索',
     command: 'hogemoge',
     when: '',
-    contains: 'editor.action.webvieweditor.showFind\neditor.action.webvieweditor.hideFind\nactions.findWithSelection\neditor.action.moveSelectionToNextFindMatch\neditor.action.nextMatchFindAction'
+    contains: 'actions.findWithSelection\neditor.action.webvieweditor.showFind\neditor.action.webvieweditor.hideFind\neditor.action.moveSelectionToNextFindMatch\neditor.action.nextMatchFindAction\neditor.action.nextSelectionMatchFindAction\neditor.action.previousMatchFindAction\neditor.action.previousSelectionMatchFindAction\ntoggleFindCaseSensitive\ntoggleFindInSelection\ntoggleFindRegex\ntoggleFindWholeWord\neditor.action.replaceOne\neditor.action.replaceAll'
+  },
+  {
+    name: '全体検索',
+    command: 'hogemoge',
+    when: '',
+    contains: 'workbench.action.findInFiles\nworkbench.view.search\nsearch.action.cancel\nsearch.action.copyMatch\nsearch.action.copyPath\nsearch.action.focusNextSearchResult\nsearch.action.focusPreviousSearchResult\nsearch.action.focusSearchFromResults\nsearch.action.openResultToSide\nsearch.action.remove\nsearch.action.replace\nsearch.action.replaceAll\nsearch.action.replaceAllInFile\nsearch.action.replaceAllInFolder\nsearch.action.clearHistory\nsearch.action.clearSearchResults\nsearch.action.collapseSearchResults\nsearch.action.copyAll\nsearch.action.focusSearchList\nsearch.action.refreshSearchResults\nsearch.action.toggleSearchViewPosition\nsearch.focus.nextInputBox\nsearch.focus.previousInputBox'
   },
   {
     name: 'フォルダー・ファイルOPEN',
