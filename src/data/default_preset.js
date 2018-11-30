@@ -1,10 +1,10 @@
 export const defaultPreset = [
-  {
-    name: '一般',
-    command: 'hogemoge',
-    when: '',
-    contains: 'workbench.action.showCommands\nworkbench.action.quickOpen\nworkbench.action.openSettings\nworkbench.action.closeWindow\nworkbench.action.newWindow\nworkbench.action.openGlobalKeybindings\n'
-  },
+  // {
+  //   name: '一般',
+  //   command: 'hogemoge',
+  //   when: '',
+  //   contains: 'workbench.action.showCommands\nworkbench.action.quickOpen\nworkbench.action.openSettings\nworkbench.action.closeWindow\nworkbench.action.newWindow\nworkbench.action.openGlobalKeybindings\n'
+  // },
   {
     name: '編集',
     command: 'hogemoge',
@@ -47,24 +47,24 @@ export const defaultPreset = [
     when: '',
     contains: 'workbench.action.findInFiles\nworkbench.view.search\nsearch.action.cancel\nsearch.action.copyMatch\nsearch.action.copyPath\nsearch.action.focusNextSearchResult\nsearch.action.focusPreviousSearchResult\nsearch.action.focusSearchFromResults\nsearch.action.openResultToSide\nsearch.action.remove\nsearch.action.replace\nsearch.action.replaceAll\nsearch.action.replaceAllInFile\nsearch.action.replaceAllInFolder\nsearch.action.clearHistory\nsearch.action.clearSearchResults\nsearch.action.collapseSearchResults\nsearch.action.copyAll\nsearch.action.focusSearchList\nsearch.action.refreshSearchResults\nsearch.action.toggleSearchViewPosition\nsearch.focus.nextInputBox\nsearch.focus.previousInputBox'
   },
-  {
-    name: 'フォルダー・ファイルOPEN',
-    command: 'hogemoge',
-    when: '',
-    contains: 'workbench.action.quickOpen\nworkbench.action.files.openFile\nworkbench.action.files.openFolder\nworkbench.action.addRootFolder\n'
-  },
-  {
-    name: 'ウィンドウ・エディタ開閉',
-    command: 'hogemoge',
-    when: '',
-    contains: 'workbench.action.closeActiveEditor\nworkbench.action.closeAllEditors\nworkbench.action.closeAllGroups\nworkbench.action.closeEditorsInGroup\nworkbench.action.closeFolder\n\nworkbench.action.closeUnmodifiedEditors\nworkbench.action.closeWindow\nworkbench.action.files.showOpenedFileInNewWindow\nworkbench.action.newWindow'
-  },
-  {
-    name: 'エディタ分割',
-    command: 'hogemoge',
-    when: '',
-    contains: 'workbench.action.splitEditor\nworkbench.action.splitEditorOrthogonal\nworkbench.action.splitEditorDown\nworkbench.action.splitEditorLeft\nworkbench.action.splitEditorRight\nworkbench.action.splitEditorUp\nexplorer.openToSide'
-  },
+  // {
+  //   name: 'フォルダー・ファイルOPEN',
+  //   command: 'hogemoge',
+  //   when: '',
+  //   contains: 'workbench.action.quickOpen\nworkbench.action.files.openFile\nworkbench.action.files.openFolder\nworkbench.action.addRootFolder\n'
+  // },
+  // {
+  //   name: 'ウィンドウ・エディタ開閉',
+  //   command: 'hogemoge',
+  //   when: '',
+  //   contains: 'workbench.action.closeActiveEditor\nworkbench.action.closeAllEditors\nworkbench.action.closeAllGroups\nworkbench.action.closeEditorsInGroup\nworkbench.action.closeFolder\n\nworkbench.action.closeUnmodifiedEditors\nworkbench.action.closeWindow\nworkbench.action.files.showOpenedFileInNewWindow\nworkbench.action.newWindow'
+  // },
+  // {
+  //   name: 'エディタ分割',
+  //   command: 'hogemoge',
+  //   when: '',
+  //   contains: 'workbench.action.splitEditor\nworkbench.action.splitEditorOrthogonal\nworkbench.action.splitEditorDown\nworkbench.action.splitEditorLeft\nworkbench.action.splitEditorRight\nworkbench.action.splitEditorUp\nexplorer.openToSide'
+  // },
   {
     name: 'フォールド',
     command: 'fold -folder',
