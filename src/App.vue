@@ -17,7 +17,7 @@ v-app
                     v-switch(v-model='options.hideComment' label='コメントを隠す' @change="saveOptions")
           v-card(v-if='!options.hideForm')
             v-card-text
-              v-textarea(box label='デフォルトjson' hint='defaultのjsonファイルを上書きします。拡張機能等でキーバインドが変わっている人は自分のkeybindings.jsonを貼りつけてください' v-model='defaultJson' @change='defaultJsonUpdate')
+              v-textarea(box label='デフォルトjson' hint='自分のkeybindings.jsonを貼りつけてください' v-model='defaultJson' @change='defaultJsonUpdate')
               v-textarea(box label='カスタムjson' hint='自分でカスタマイズしたkeybind.jsonはこちらに貼り付けてください。' v-model='customJson' @change='customJsonUpdate')
           v-card
             v-card-text
