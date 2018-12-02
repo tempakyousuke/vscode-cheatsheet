@@ -354,6 +354,7 @@ export const commandComments = {
   'workbench.action.navigateForward': '次のカーソル位置へ',
   'workbench.action.navigateToLastEditLocation': '最後の編集位置に移動',
   'workbench.action.newWindow': '新しいウィンドウを開く',
+  'workbench.action.switchWindow': 'ウィンドウを切り替える',
   'workbench.action.nextEditor': '次のエディタにフォーカス',
   'workbench.action.previousEditor': '前のエディタにフォーカス',
   'workbench.action.openEditorAtIndex1': '1つ目のエディタにフォーカス',
