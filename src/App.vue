@@ -159,3 +159,7 @@ td.comment-td
   max-width: 300px
   overflow-wrap: break-word
 </style>
+<style lang='sass'>
+body
+  min-height: 1200px
+</style>
