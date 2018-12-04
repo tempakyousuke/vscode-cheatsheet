@@ -128,7 +128,7 @@ export const commandComments = {
   'editor.action.refactor': 'リファクタリングを出す',
   'editor.action.referenceSearch.trigger': '',
   'editor.action.removeCommentLine': '行コメントを削除(htmlだとtoggle?)',
-  'editor.action.rename': '名前の変更',
+  'editor.action.rename': 'シンボルのrename',
   'editor.action.selectHighlights': 'ハイライトされているものをすべて選択',
   'editor.action.showAccessibilityHelp': '',
   'editor.action.showContextMenu': '',
