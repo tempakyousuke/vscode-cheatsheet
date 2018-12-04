@@ -45,7 +45,7 @@ export const defaultPreset = [
     name: '複数選択/マルチカーソル',
     command: 'hogemoge',
     when: '',
-    contains: 'workbench.action.toggleMultiCursorModifier\neditor.action.insertCursorAbove\nremoveSecondaryCursors\neditor.action.insertCursorBelow\neditor.action.addSelectionToNextFindMatch\neditor.action.changeAll\neditor.action.selectHighlights\neditor.action.selectAllMatches'
+    contains: 'workbench.action.toggleMultiCursorModifier\neditor.action.insertCursorAbove\neditor.action.insertCursorAtEndOfEachLineSelected\nremoveSecondaryCursors\neditor.action.insertCursorBelow\neditor.action.addSelectionToNextFindMatch\neditor.action.changeAll\neditor.action.selectHighlights\neditor.action.selectAllMatches'
   },
   {
     name: 'カーソル履歴',
@@ -129,7 +129,7 @@ export const defaultPreset = [
     name: 'フォールド',
     command: 'fold -folder',
     when: '',
-    contains: ''
+    contains: 'editor.foldLevel1\neditor.foldLevel2\neditor.foldLevel3\neditor.foldLevel4\neditor.foldLevel5\neditor.foldLevel6\neditor.foldLevel7'
   },
   {
     name: 'ターミナル',
