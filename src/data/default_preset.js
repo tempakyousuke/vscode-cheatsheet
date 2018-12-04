@@ -9,7 +9,7 @@ export const defaultPreset = [
     name: '編集',
     command: 'hogemoge',
     when: '',
-    contains: 'editor.action.insertLineAfter\neditor.action.insertLineBefore\neditor.action.moveLinesDownAction\neditor.action.moveLinesUpAction\neditor.action.copyLinesDownAction\neditor.action.copyLinesUpAction\neditor.action.clipboardCopyAction\neditor.action.clipboardCutAction\neditor.action.clipboardPasteAction\nredo\nundo'
+    contains: 'editor.action.insertLineAfter\neditor.action.insertLineBefore\neditor.action.moveLinesDownAction\neditor.action.moveLinesUpAction\neditor.action.copyLinesDownAction\neditor.action.copyLinesUpAction\neditor.action.clipboardCopyAction\neditor.action.clipboardCutAction\neditor.action.clipboardPasteAction\nredo\nundo\neditor.action.joinLines'
   },
   {
     name: 'インデント',
@@ -58,6 +58,12 @@ export const defaultPreset = [
     command: 'hogemoge',
     when: '',
     contains: 'editor.action.diffReview.next\neditor.action.diffReview.prev\neditor.action.dirtydiff.next\neditor.action.dirtydiff.previous\nworkbench.action.editor.nextChange\nworkbench.action.editor.previousChange'
+  },
+  {
+    name: '警告箇所移動',
+    command: 'hogemoge',
+    when: '',
+    contains: 'editor.action.marker.nextInFiles\neditor.action.marker.prevInFiles'
   },
   {
     name: 'エディタ内検索',
