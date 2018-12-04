@@ -12,10 +12,16 @@ export const defaultPreset = [
     contains: 'editor.action.insertLineAfter\neditor.action.insertLineBefore\neditor.action.moveLinesDownAction\neditor.action.moveLinesUpAction\neditor.action.copyLinesDownAction\neditor.action.copyLinesUpAction\neditor.action.clipboardCopyAction\neditor.action.clipboardCutAction\neditor.action.clipboardPasteAction'
   },
   {
-    name: '移動・選択',
+    name: '移動',
     command: 'hogemoge',
     when: '',
-    contains: 'cursorTop\ncursorTopSelect\ncursorBottom\ncursorBottomSelect\ncursorHome\ncursorHomeSelect\ncursorLineStart\ncursorLineEnd\ncursorEnd\ncursorHome\neditor.action.toggleWordWrap\ncursorWordStartLeft\ncursorWordEndRight\nscrollLineUp\nscrollLineDown\nscrollPageUp\nscrollPageDown\neditor.action.jumpToBracket\nworkbench.action.navigateForward\nworkbench.action.navigateBack\nworkbench.action.navigateToLastEditLocation\ncursorWordEndLeft\ncursorWordEndLeftSelect\ncursorWordLeft\ncursorWordLeftSelect\ncursorWordRight\ncursorWordRightSelect\ncursorWordPartLeft\ncursorWordPartLeftSelect\ncursorWordPartRight\ncursorWordPartRightSelect\ncursorWordPartStartLeft\ncursorWordPartStartLeftSelect\neditor.action.smartSelect.grow\neditor.action.smartSelect.shrink'
+    contains: 'cursorTop\ncursorBottom\ncursorHome\ncursorLineStart\ncursorLineEnd\ncursorEnd\ncursorHome\neditor.action.toggleWordWrap\ncursorWordStartLeft\ncursorWordEndRight\nscrollLineUp\nscrollLineDown\nscrollPageUp\nscrollPageDown\neditor.action.jumpToBracket\nworkbench.action.navigateForward\nworkbench.action.navigateBack\nworkbench.action.navigateToLastEditLocation\ncursorWordEndLeft\ncursorWordLeft\ncursorWordRight\ncursorWordPartLeft\ncursorWordPartRight\ncursorWordPartStartLeft\n'
+  },
+  {
+    name: '選択',
+    command: 'hogemoge',
+    when: '',
+    contains: 'cursorTopSelect\ncursorBottomSelect\ncursorHomeSelect\ncursorWordEndLeftSelect\ncursorWordLeftSelect\ncursorWordRightSelect\ncursorWordPartLeftSelect\ncursorWordPartRightSelect\ncursorWordPartStartLeftSelect\neditor.action.smartSelect.grow\neditor.action.smartSelect.shrink'
   },
   {
     name: '削除',
