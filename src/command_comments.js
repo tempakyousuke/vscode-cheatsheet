@@ -55,7 +55,7 @@ export const commandComments = {
   scrollLineUp: 'カーソル位置を変えずに一行上にスクロール',
   scrollPageDown: 'カーソル位置を変えずに一ページ下にスクロール',
   scrollPageUp: 'カーソル位置を変えずに一ページ上にスクロール',
-  tab: 'tabを入力',
+  tab: 'tab',
   undo: '元に戻す',
   removeSecondaryCursors: '複数カーソルがある状態を解除',
   'repl.action.acceptSuggestion': '提案ウィジェットが出ているときにウィジェット内にフォーカスを移す',
