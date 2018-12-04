@@ -54,6 +54,12 @@ export const defaultPreset = [
     contains: 'cursorUndo\nworkbench.action.navigateBack\nworkbench.action.navigateForward'
   },
   {
+    name: '差分箇所移動',
+    command: 'hogemoge',
+    when: '',
+    contains: 'editor.action.diffReview.next\neditor.action.diffReview.prev\neditor.action.dirtydiff.next\neditor.action.dirtydiff.previous\nworkbench.action.editor.nextChange\nworkbench.action.editor.previousChange'
+  },
+  {
     name: 'エディタ内検索',
     command: 'hogemoge',
     when: '',
