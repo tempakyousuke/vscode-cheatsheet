@@ -66,6 +66,12 @@ export const defaultPreset = [
     contains: 'editor.action.marker.nextInFiles\neditor.action.marker.prevInFiles'
   },
   {
+    name: 'ハイライト移動',
+    command: 'hogemoge',
+    when: '',
+    contains: 'editor.action.wordHighlight.next\neditor.action.wordHighlight.prev'
+  },
+  {
     name: 'エディタ内検索',
     command: 'hogemoge',
     when: '',
@@ -117,7 +123,7 @@ export const defaultPreset = [
     name: 'エクスプローラー',
     command: 'hogemoge',
     when: '',
-    contains: 'explorer.openToSide'
+    contains: 'explorer.openToSide\nfilesExplorer.copy\ndeleteFile\nmoveFileToTrash\nfilesExplorer.paste\nrenameFile\nexplorer.newFile\nexplorer.newFolder\nworkbench.view.explorer\nworkbench.files.action.focusOpenEditorsView'
   },
   {
     name: 'Source Controll(git)',
