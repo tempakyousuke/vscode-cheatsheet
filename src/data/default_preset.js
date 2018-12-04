@@ -21,7 +21,7 @@ export const defaultPreset = [
     name: '選択',
     command: 'hogemoge',
     when: '',
-    contains: 'editor.action.selectAll\ncursorTopSelect\ncursorBottomSelect\ncursorHomeSelect\ncursorPageDownSelect\ncursorPageUpSelect\ncursorWordEndLeftSelect\ncursorWordLeftSelect\ncursorWordRightSelect\ncursorWordPartLeftSelect\ncursorWordPartRightSelect\ncursorWordPartStartLeftSelect\neditor.action.smartSelect.grow\neditor.action.smartSelect.shrink'
+    contains: 'editor.action.selectAll\nexpandLineSelection\ncursorTopSelect\ncursorBottomSelect\ncursorHomeSelect\ncursorPageDownSelect\ncursorPageUpSelect\ncursorWordEndLeftSelect\ncursorWordLeftSelect\ncursorWordRightSelect\ncursorWordPartLeftSelect\ncursorWordPartRightSelect\ncursorWordPartStartLeftSelect\neditor.action.smartSelect.grow\neditor.action.smartSelect.shrink'
   },
   {
     name: '削除',
