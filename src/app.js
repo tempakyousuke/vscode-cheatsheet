@@ -218,6 +218,7 @@ export default {
       this.command = this.preset[index].command
       this.when = this.preset[index].when
       this.contains = this.preset[index].contains
+      this.customName = this.preset[index].name
     },
     setCustomPreset(index) {
       this.when = this.customPreset[index].when
