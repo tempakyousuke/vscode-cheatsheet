@@ -165,11 +165,6 @@ export default {
       })
       return key
     },
-    setPreset(index) {
-      this.command = this.preset[index].command
-      this.when = this.preset[index].when
-      this.contains = this.preset[index].contains
-    },
     defaultJsonUpdate(value) {
       this.defaultJson = stripJsonComments(value)
       try {
@@ -218,6 +213,11 @@ export default {
     },
     updateReplaceOption() {
       localStorage.setItem('replaceOption', JSON.stringify(this.replaceOption))
+    },
+    setPreset(index) {
+      this.command = this.preset[index].command
+      this.when = this.preset[index].when
+      this.contains = this.preset[index].contains
     },
     setCustomPreset(index) {
       this.when = this.customPreset[index].when
