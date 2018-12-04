@@ -9,7 +9,13 @@ export const defaultPreset = [
     name: '編集',
     command: 'hogemoge',
     when: '',
-    contains: 'editor.action.insertLineAfter\neditor.action.insertLineBefore\neditor.action.moveLinesDownAction\neditor.action.moveLinesUpAction\neditor.action.copyLinesDownAction\neditor.action.copyLinesUpAction\neditor.action.clipboardCopyAction\neditor.action.clipboardCutAction\neditor.action.clipboardPasteAction'
+    contains: 'editor.action.insertLineAfter\neditor.action.insertLineBefore\neditor.action.moveLinesDownAction\neditor.action.moveLinesUpAction\neditor.action.copyLinesDownAction\neditor.action.copyLinesUpAction\neditor.action.clipboardCopyAction\neditor.action.clipboardCutAction\neditor.action.clipboardPasteAction\nredo\nundo'
+  },
+  {
+    name: 'インデント',
+    command: 'hogemoge',
+    when: '',
+    contains: 'editor.action.outdentLines\neditor.action.indentLines\noutdent'
   },
   {
     name: '移動',
