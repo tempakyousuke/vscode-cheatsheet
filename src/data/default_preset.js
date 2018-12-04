@@ -15,7 +15,7 @@ export const defaultPreset = [
     name: 'インデント',
     command: 'hogemoge',
     when: '',
-    contains: 'editor.action.outdentLines\neditor.action.indentLines\noutdent'
+    contains: 'editor.action.outdentLines\neditor.action.indentLines\noutdent\ntab'
   },
   {
     name: '移動',
