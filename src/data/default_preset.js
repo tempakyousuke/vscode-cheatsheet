@@ -48,6 +48,12 @@ export const defaultPreset = [
     contains: 'workbench.action.toggleMultiCursorModifier\neditor.action.insertCursorAbove\nremoveSecondaryCursors\neditor.action.insertCursorBelow\neditor.action.addSelectionToNextFindMatch\neditor.action.changeAll\neditor.action.selectHighlights\neditor.action.selectAllMatches'
   },
   {
+    name: 'カーソル履歴',
+    command: 'hogemoge',
+    when: '',
+    contains: 'cursorUndo\nworkbench.action.navigateBack\nworkbench.action.navigateForward'
+  },
+  {
     name: 'エディタ内検索',
     command: 'hogemoge',
     when: '',
