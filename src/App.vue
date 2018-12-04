@@ -79,6 +79,8 @@ v-app
                       v-text-field(v-model='replaceOption.pageup' label="pageup" @change='updateReplaceOption')
                     v-flex(xs6 sm4 md2)
                       v-text-field(v-model='replaceOption.pagedown' label="pagedown" @change='updateReplaceOption')
+                    v-flex(xs6 sm4 md2)
+                      v-text-field(v-model='replaceOption.delete' label="delete" @change='updateReplaceOption')
               v-form(v-if='!options.hideForm')
                 v-text-field(v-model='command' label="command" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')
                 v-text-field(v-model='when' label="when" hint='半角スペースで複数テキスト検索。「-」を先頭につけることで除外できます。')

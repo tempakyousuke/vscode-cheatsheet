@@ -57,7 +57,8 @@ export default {
         'home': 'home',
         'end': 'end',
         'pageup': 'pageup',
-        'pagedown': 'pagedown'
+        'pagedown': 'pagedown',
+        'delete': 'delete',
       }
     }
   },
