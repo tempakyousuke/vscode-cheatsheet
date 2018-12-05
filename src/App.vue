@@ -105,10 +105,39 @@ v-app
                 v-card-text
                   v-btn(v-if='!options.hideDefault' v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
                   v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
-        v-flex(xs12)
+        v-flex(v-if="mode === 'normal'" xs12)
           v-card.text-xs-left
             v-card-text
               v-data-table(:headers='headers', :items='keyBind' hide-actions expand)
+                template(slot='items', slot-scope="props")
+                  td.key-td
+                    | {{replaceKey(props.item.key)}}
+                  td.command-td(v-if='!options.hideCommand')
+                    | {{props.item.command}}
+                  td.when-td(v-if='!options.hideWhen')
+                    | {{props.item.when}}
+                  td.comment-td(v-if='!options.hideComment')
+                    | {{commandComments[props.item.command]}}
+
+        v-flex(v-if="mode === 'allView'" xs12)
+          v-card.mt-3.text-xs-left(v-if='!options.hideDefault' v-for='value, key in preset', :key='`keyBind${key}`')
+            v-card-title {{value.name}}
+            v-card-text
+              v-data-table(:headers='headers', :items='filteredKeyBind(value)' hide-actions expand)
+                template(slot='items', slot-scope="props")
+                  td.key-td
+                    | {{replaceKey(props.item.key)}}
+                  td.command-td(v-if='!options.hideCommand')
+                    | {{props.item.command}}
+                  td.when-td(v-if='!options.hideWhen')
+                    | {{props.item.when}}
+                  td.comment-td(v-if='!options.hideComment')
+                    | {{commandComments[props.item.command]}}
+
+          v-card.mt-3.text-xs-left(v-for='value, key in customPreset', :key='`keyBind${key}`')
+            v-card-title {{value.name}}
+            v-card-text
+              v-data-table(:headers='headers', :items='filteredKeyBind(value)' hide-actions expand)
                 template(slot='items', slot-scope="props")
                   td.key-td
                     | {{replaceKey(props.item.key)}}
