@@ -26,7 +26,8 @@ export default {
         hideForm: true,
         hideCommand: false,
         hideWhen: false,
-        hideComment: false
+        hideComment: false,
+        hideDefault: false,
       },
       jsonDialog: false,
       jsonError: '',

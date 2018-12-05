@@ -15,6 +15,7 @@ v-app
                     v-switch(v-model='options.hideCommand' label='commandを隠す' @change="saveOptions")
                     v-switch(v-model='options.hideWhen' label='whenを隠す' @change="saveOptions")
                     v-switch(v-model='options.hideComment' label='コメントを隠す' @change="saveOptions")
+                    v-switch(v-model='options.hideDefault' label='デフォルトプリセットを隠す' @change="saveOptions")
           v-card(v-if='!options.hideForm')
             v-card-text
               v-textarea(box label='デフォルトjson' hint='自分のkeybindings.jsonを貼りつけてください' v-model='defaultJson' @change='defaultJsonUpdate')
@@ -102,7 +103,7 @@ v-app
               v-card.text-xs-left
                 v-card-title プリセット
                 v-card-text
-                  v-btn(v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
+                  v-btn(v-if='!options.hideDefault' v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
                   v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
         v-flex(xs12)
           v-card.text-xs-left
