@@ -62,7 +62,6 @@ export default {
         'delete': 'delete',
       },
       mode: 'normal',
-      }
     }
   },
   computed: {
@@ -127,33 +126,11 @@ export default {
       return keyBind
     },
     keyBind() {
-      let keyBind = Object.assign([], this.mergedKeyBind)
-      if (this.command) {
-        let commands = this.command.split(' ')
-        for (let value of commands) {
-          keyBind = this.keyFilter(keyBind, 'command', value)
-        }
-      }
-
-      if (this.when) {
-        let whens = this.when.split(' ')
-        for (let value of whens) {
-          keyBind = this.keyFilter(keyBind, 'when', value)
-        }
-      }
-      let containsArr = this.contains.split('\n')
-      for (let value of containsArr) {
-        let index = keyBind.findIndex(el => el.command === value)
-        if (index === -1) {
-          keyBind.push({
-            key: '',
-            command: value,
-            when: ''
-          })
-        }
-      }
-
-      return keyBind
+      return this.filteredKeyBind({
+        command: this.command,
+        when: this.when,
+        contains: this.contains
+      })
     },
     presetIndex() {
       return this.customPreset.findIndex(value => value.name === this.customName)
@@ -236,8 +213,36 @@ export default {
       this.customPreset.splice(this.presetIndex, 1)
       localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
     },
-    keyFilter(keyBind, key, str) {
-      let containsArr = this.contains.split('\n')
+    filteredKeyBind({ command, when, contains }) {
+      let keyBind = Object.assign([], this.mergedKeyBind)
+      if (command) {
+        let commands = command.split(' ')
+        for (let value of commands) {
+          keyBind = this.keyFilter(keyBind, 'command', value, contains)
+        }
+      }
+
+      if (when) {
+        let whens = when.split(' ')
+        for (let value of whens) {
+          keyBind = this.keyFilter(keyBind, 'when', value, contains)
+        }
+      }
+      let containsArr = contains.split('\n')
+      for (let value of containsArr) {
+        let index = keyBind.findIndex(el => el.command === value)
+        if (index === -1) {
+          keyBind.push({
+            key: '',
+            command: value,
+            when: ''
+          })
+        }
+      }
+      return keyBind
+    },
+    keyFilter(keyBind, key, str, contains) {
+      let containsArr = contains.split('\n')
       keyBind = keyBind.filter(value => {
         if (containsArr.indexOf(value.command) !== -1) {
           return true
