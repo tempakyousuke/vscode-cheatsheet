@@ -60,6 +60,8 @@ export default {
         'pageup': 'pageup',
         'pagedown': 'pagedown',
         'delete': 'delete',
+      },
+      mode: 'normal',
       }
     }
   },
