@@ -142,6 +142,9 @@ export default {
     sumQuestionNumber() {
       return this.gameKeyBind.length
     },
+    nowQuestionNumber() {
+      return this.gameIndex + 1
+    },
   },
   methods: {
     replaceKey(key) {
