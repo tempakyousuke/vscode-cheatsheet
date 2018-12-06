@@ -101,7 +101,15 @@ v-app
                             | delete
                           | 削除
               v-card.text-xs-left
-                v-card-title プリセット
+                v-card-title
+                  span.headline プリセット
+                  v-spacer
+                  v-menu(left)
+                    v-btn(slot='activator', icon)
+                      v-icon more_vert
+                    v-list
+                      v-list-tile
+                        v-list-tile-title(@click='copyConfirm = true') デフォルトプリセットコピー
                 v-card-text
                   v-btn(v-if='!options.hideDefault' v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
                   v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
