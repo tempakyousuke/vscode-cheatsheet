@@ -181,7 +181,27 @@ v-app
                     | {{props.item.when}}
                   td.comment-td(v-if='!options.hideComment')
                     | {{commandComments[props.item.command]}}
+
     v-layout(row='', justify-center='')
+      v-dialog(v-model='gameWindow', persistent='', max-width='800')
+        v-card
+          v-card-title.headline キー入力ゲーム　　　{{nowQuestionNumber}} / {{sumQuestionNumber}}
+          v-card-text.text-xs-center(v-if='gameWindow')
+            div.question-outer
+              span.questionKey {{replaceKey(nowQuestion.key)}}
+            v-layout(row wrap)
+              v-flex.text-xs-right(xs2 offset-xs2)
+                | コマンド名：
+              v-flex.text-xs-left(xs5)
+                | {{nowQuestion.command}}
+            v-layout(row wrap)
+              v-flex.text-xs-right(xs2 offset-xs2)
+                | コメント：
+              v-flex.text-xs-left(xs5)
+                | {{commandComments[nowQuestion.command]}}
+          v-card-actions
+            v-spacer
+            v-btn(color='green darken-1', flat='', @click.native='gameWindow = false') 閉じる
       v-dialog(v-model='jsonDialog', persistent='', max-width='290')
         v-card
           v-card-title.headline JSONのパースに失敗しました
@@ -237,4 +257,11 @@ td.comment-td
 <style lang='sass'>
 body
   min-height: 1200px
+
+.question-outer
+  height: 200px
+  padding: 30px
+
+.questionKey
+  font-size: 50px
 </style>
