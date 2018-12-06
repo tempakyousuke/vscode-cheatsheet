@@ -145,6 +145,9 @@ export default {
     nowQuestionNumber() {
       return this.gameIndex + 1
     },
+    nowQuestion() {
+      return this.gameKeyBind[this.gameIndex]
+    }
   },
   methods: {
     replaceKey(key) {
