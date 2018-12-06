@@ -258,6 +258,18 @@ export default {
         return value[key].match(regexp)
       })
       return keyBind
+    },
+    copyPreset() {
+      let preset = this.preset.filter(value => {
+        return !this.isInCustomPreset(value.name)
+      })
+      this.customPreset = [...this.customPreset, ...preset]
+      this.copyConfirm = false
+    },
+    isInCustomPreset(name) {
+      return this.customPreset.some(value => {
+        return value.name === name
+      })
     }
   },
   created() {
