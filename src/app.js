@@ -138,7 +138,10 @@ export default {
     },
     presetIndex() {
       return this.customPreset.findIndex(value => value.name === this.customName)
-    }
+    },
+    questionNumber() {
+      return this.gameKeyBind.length
+    },
   },
   methods: {
     replaceKey(key) {
