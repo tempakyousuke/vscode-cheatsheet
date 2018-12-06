@@ -108,12 +108,12 @@ v-app
                       v-icon more_vert
                     v-list
                       v-list-tile
-                        v-list-tile-title(v-if='options.hideDefault' @click='options.hideDefault = false') デフォルトプリセットを表示
-                        v-list-tile-title(v-if='!options.hideDefault' @click='options.hideDefault = true') デフォルトプリセットを隠す
+                        v-list-tile-title(v-if='hideDefault' @click='hideDefaultToggle') デフォルトプリセットを表示
+                        v-list-tile-title(v-if='!hideDefault' @click='hideDefaultToggle') デフォルトプリセットを隠す
                       v-list-tile
                         v-list-tile-title(@click='copyConfirm = true') デフォルトプリセットコピー
                 v-card-text
-                  v-btn(v-if='!options.hideDefault' v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
+                  v-btn(v-if='!hideDefault' v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
                   v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
         v-flex(v-if="mode === 'normal'" xs12)
           v-card.text-xs-left
@@ -130,7 +130,7 @@ v-app
                     | {{commandComments[props.item.command]}}
 
         v-flex(v-if="mode === 'allView'" xs12)
-          v-card.mt-3.text-xs-left(v-if='!options.hideDefault' v-for='value, key in preset', :key='`keyBind${key}`')
+          v-card.mt-3.text-xs-left(v-if='!hideDefault' v-for='value, key in preset', :key='`keyBind${key}`')
             v-card-title {{value.name}}
             v-card-text
               v-data-table(:headers='headers', :items='filteredKeyBind(value)' hide-actions expand)

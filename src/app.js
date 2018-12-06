@@ -27,8 +27,8 @@ export default {
         hideCommand: false,
         hideWhen: false,
         hideComment: false,
-        hideDefault: false,
       },
+      hideDefault: false,
       jsonDialog: false,
       jsonError: '',
       replaceOption: {
@@ -271,6 +271,10 @@ export default {
       return this.customPreset.some(value => {
         return value.name === name
       })
+    },
+    hideDefaultToggle() {
+      this.hideDefault = !this.hideDefault
+      localStorage.setItem('hideDefault', JSON.stringify(this.hideDefault))
     }
   },
   created() {
@@ -302,6 +306,11 @@ export default {
         this.replaceOption.shift = '⇧'
         this.replaceOption.ctrl = '^'
       }
+    }
+
+    let hideDefault = localStorage.getItem('hideDefault')
+    if (hideDefault) {
+      this.hideDefault = JSON.parse(hideDefault)
     }
   }
 }
