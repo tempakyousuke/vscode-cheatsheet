@@ -290,6 +290,7 @@ export default {
       this.gameKeyBind = keyBind.filter((value) => {
         return value.key
       })
+      this.gameIndex = 0
     }
   },
   created() {
