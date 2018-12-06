@@ -107,11 +107,11 @@ v-app
                     v-btn(slot='activator', icon)
                       v-icon more_vert
                     v-list
-                      v-list-tile
-                        v-list-tile-title(v-if='hideDefault' @click='hideDefaultToggle') デフォルトプリセットを表示
-                        v-list-tile-title(v-if='!hideDefault' @click='hideDefaultToggle') デフォルトプリセットを隠す
-                      v-list-tile
-                        v-list-tile-title(@click='copyConfirm = true') デフォルトプリセットコピー
+                      v-list-tile(@click='hideDefaultToggle')
+                        v-list-tile-title(v-if='hideDefault' ) デフォルトプリセットを表示
+                        v-list-tile-title(v-if='!hideDefault') デフォルトプリセットを隠す
+                      v-list-tile(@click='copyConfirm = true')
+                        v-list-tile-title デフォルトプリセットコピー
                 v-card-text
                   v-btn(v-if='!hideDefault' v-for="(item, index) in preset" color="success" @click="setPreset(index)", :key='`preset${index}`') {{item.name}}
                   v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
