@@ -289,11 +289,22 @@ export default {
       localStorage.setItem('hideDefault', JSON.stringify(this.hideDefault))
     },
     startGame(keyBind) {
+      this.gameIndex = 0
       this.gameWindow = true
       this.gameKeyBind = keyBind.filter((value) => {
         return value.key
       })
-      this.gameIndex = 0
+      window.addEventListener('keydown', e => {
+        console.log(e.key)
+      })
+      window.addEventListener('keyup', e => {
+        console.log(e.key)
+      })
+    },
+    gameEnd() {
+      this.gameWindow = false
+      window.removeEventListener('keydonw')
+      window.removeEventListener('keyup')
     }
   },
   created() {
