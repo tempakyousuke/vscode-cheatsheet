@@ -15,7 +15,6 @@ v-app
                     v-switch(v-model='options.hideCommand' label='commandを隠す' @change="saveOptions")
                     v-switch(v-model='options.hideWhen' label='whenを隠す' @change="saveOptions")
                     v-switch(v-model='options.hideComment' label='コメントを隠す' @change="saveOptions")
-                    v-switch(v-model='options.hideDefault' label='デフォルトプリセットを隠す' @change="saveOptions")
           v-card(v-if='!options.hideForm')
             v-card-text
               v-textarea(box label='デフォルトjson' hint='自分のkeybindings.jsonを貼りつけてください' v-model='defaultJson' @change='defaultJsonUpdate')
@@ -108,6 +107,9 @@ v-app
                     v-btn(slot='activator', icon)
                       v-icon more_vert
                     v-list
+                      v-list-tile
+                        v-list-tile-title(v-if='options.hideDefault' @click='options.hideDefault = false') デフォルトプリセットを表示
+                        v-list-tile-title(v-if='!options.hideDefault' @click='options.hideDefault = true') デフォルトプリセットを隠す
                       v-list-tile
                         v-list-tile-title(@click='copyConfirm = true') デフォルトプリセットコピー
                 v-card-text
