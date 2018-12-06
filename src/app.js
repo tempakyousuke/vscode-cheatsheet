@@ -62,7 +62,10 @@ export default {
         'delete': 'delete',
       },
       mode: 'normal',
-      copyConfirm: false
+      copyConfirm: false,
+      gameWindow: false,
+      gameKeyBind: [],
+      gameIndex: 0,
     }
   },
   computed: {
@@ -275,6 +278,12 @@ export default {
     hideDefaultToggle() {
       this.hideDefault = !this.hideDefault
       localStorage.setItem('hideDefault', JSON.stringify(this.hideDefault))
+    },
+    startGame(keyBind) {
+      this.gameWindow = true
+      this.gameKeyBind = keyBind.filter((value) => {
+        return value.key
+      })
     }
   },
   created() {
