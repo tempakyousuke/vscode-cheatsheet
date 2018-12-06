@@ -66,6 +66,14 @@ export default {
       gameWindow: false,
       gameKeyBind: [],
       gameIndex: 0,
+      gameKey: [],
+      nowPress: {
+        other: '',
+        alt: false,
+        shift: false,
+        ctrl: false,
+        cmd: false
+      }
     }
   },
   computed: {
@@ -147,6 +155,27 @@ export default {
     },
     nowQuestion() {
       return this.gameKeyBind[this.gameIndex]
+    },
+    gameReplaceOption() {
+      let option = Object.assign({}, this.replaceKey)
+      delete option.alt
+      delete option.cmd
+      delete option.shift
+      delete option.ctrl
+      delete option.escape
+      delete option.backspace
+      delete option.home
+      delete option.end
+      delete option.pageup
+      delete option.pagedown
+      delete option.delete
+      option.down = 'arrowdown'
+      option.up = 'arrowup'
+      option.left = 'arrowleft'
+      option.right = 'arrowright'
+      option.pagearrowdown = 'pagedown'
+      option.pagearrowup = 'pageup'
+      return option
     }
   },
   methods: {
@@ -294,17 +323,150 @@ export default {
       this.gameKeyBind = keyBind.filter((value) => {
         return value.key
       })
+      this.setGameKey()
       window.addEventListener('keydown', e => {
-        console.log(e.key)
+        this.keyDown(e.key)
       })
       window.addEventListener('keyup', e => {
-        console.log(e.key)
+        this.keyUp(e.key)
       })
+    },
+    setGameKey() {
+      let keys = this.nowQuestion.key.split(/\s/)
+      let mustPress = []
+      for (let key of keys) {
+        let press = this.createPress(key)
+        mustPress.push(press)
+      }
+      this.gameKey = mustPress
+    },
+    createPress(key) {
+      let keys = key.split('+')
+      let press = {
+        other: '',
+        alt: false,
+        shift: false,
+        ctrl: false,
+        cmd: false
+      }
+      for (let key of keys) {
+        key = this.gameReplace(key)
+        if (key === 'alt') {
+          press.alt = true
+          continue
+        }
+        if (key === 'shift') {
+          press.shift = true
+          continue
+        }
+        if (key === 'ctrl') {
+          press.ctrl = true
+          continue
+        }
+        if (key === 'cmd') {
+          press.cmd = true
+          continue
+        }
+        press.other = key
+      }
+      return press
+    },
+    gameReplace(key) {
+      Object.entries(this.gameReplaceOption).forEach(([before, after]) => {
+        if (after) {
+          key = replaceString(key, before, after)
+        }
+      })
+      return key
     },
     gameEnd() {
       this.gameWindow = false
       window.removeEventListener('keydonw')
       window.removeEventListener('keyup')
+    },
+    keyDown(key) {
+      key = key.toLowerCase()
+      if (key === 'alt') {
+        this.nowPress.alt = true
+        this.checkKey()
+        return
+      }
+      if (key === 'shift') {
+        this.nowPress.shift = true
+        this.checkKey()
+        return
+      }
+      if (key === 'control') {
+        this.nowPress.ctrl = true
+        this.checkKey()
+        return
+      }
+      if (key === 'cmd') {
+        this.nowPress.cmd = true
+        this.checkKey()
+        return
+      }
+      this.nowPress.other = key
+      this.checkKey()
+      return
+    },
+    keyUp(key) {
+      key = key.toLowerCase()
+      if (key === 'alt') {
+        this.nowPress.alt = false
+        this.checkKey()
+        return
+      }
+      if (key === 'shift') {
+        this.nowPress.shift = false
+        this.checkKey()
+        return
+      }
+      if (key === 'control') {
+        this.nowPress.ctrl = false
+        this.checkKey()
+        return
+      }
+      if (key === 'command') {
+        this.nowPress.cmd = false
+        this.checkKey()
+        return
+      }
+      if (this.nowPress.other === key) {
+        this.nowPress.other = ''
+      }
+      this.checkKey()
+      return
+    },
+    checkKey() {
+      const answer = this.gameKey[0]
+      if (
+        this.nowPress.alt === answer.alt &&
+        this.nowPress.shift === answer.shift &&
+        this.nowPress.ctrl === answer.ctrl &&
+        this.nowPress.cmd === answer.cmd &&
+        this.nowPress.other === answer.other
+      ) {
+        this.gameKey.shift()
+        if (this.gameKey.length === 0) {
+          this.nextQuestion()
+        }
+      }
+    },
+    nextQuestion() {
+      this.gameIndex++
+      this.nowPress = {
+        other: '',
+        alt: false,
+        shift: false,
+        ctrl: false,
+        cmd: false
+      }
+      if (this.sumQuestionNumber === (this.gameIndex + 1)) {
+        console.log('End')
+      } else {
+        this.setGameKey()
+      }
     }
   },
   created() {
