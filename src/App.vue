@@ -125,6 +125,8 @@ v-app
                 v-list
                   v-list-tile(@click="mode = 'allView'")
                     v-list-tile-title プリセットごとにすべて表示
+                  v-list-tile(@click='startGame(keyBind)')
+                    v-list-tile-title ゲームスタート
             v-card-text
               v-data-table(:headers='headers', :items='keyBind' hide-actions expand)
                 template(slot='items', slot-scope="props")
