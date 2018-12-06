@@ -156,6 +156,17 @@ v-app
           v-card-actions
             v-spacer
             v-btn(color='green darken-1', flat='', @click.native='jsonDialog = false') 閉じる
+      v-dialog(v-model='copyConfirm', persistent='', max-width='400')
+        v-card
+          v-card-title.headline プリセットコピー
+          v-card-text
+            | デフォルトのプリセットをコピーします
+            br
+            | 自分で追加した名前と同じ名前のプリセットはコピーされません
+          v-card-actions
+            v-spacer
+            v-btn(color='green darken-1', flat='', @click.native='copyPreset') コピー
+            v-btn(color='green darken-1', flat='', @click.native='copyConfirm = false') キャンセル
 
   v-footer(:fixed='fixed', app='')
     span © 2017

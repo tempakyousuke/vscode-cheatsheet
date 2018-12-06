@@ -62,6 +62,7 @@ export default {
         'delete': 'delete',
       },
       mode: 'normal',
+      copyConfirm: false
     }
   },
   computed: {
