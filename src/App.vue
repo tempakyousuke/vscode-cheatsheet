@@ -117,6 +117,14 @@ v-app
                   v-btn(v-for="(item, index) in customPreset" color='primary' @click="setCustomPreset(index)", :key="index") {{item.name}}
         v-flex(v-if="mode === 'normal'" xs12)
           v-card.text-xs-left
+            v-card-title
+              v-spacer
+              v-menu(left)
+                v-btn(slot='activator', icon)
+                  v-icon more_vert
+                v-list
+                  v-list-tile(@click="mode = 'allView'")
+                    v-list-tile-title プリセットごとにすべて表示
             v-card-text
               v-data-table(:headers='headers', :items='keyBind' hide-actions expand)
                 template(slot='items', slot-scope="props")
@@ -131,7 +139,14 @@ v-app
 
         v-flex(v-if="mode === 'allView'" xs12)
           v-card.mt-3.text-xs-left(v-if='!hideDefault' v-for='value, key in preset', :key='`keyBind${key}`')
-            v-card-title {{value.name}}
+            v-card-title.headline {{value.name}}
+              v-spacer
+              v-menu(left)
+                v-btn(slot='activator', icon)
+                  v-icon more_vert
+                v-list
+                  v-list-tile(@click="mode = 'normal'")
+                    v-list-tile-title 現在のフィルターで表示
             v-card-text
               v-data-table(:headers='headers', :items='filteredKeyBind(value)' hide-actions expand)
                 template(slot='items', slot-scope="props")
@@ -145,7 +160,14 @@ v-app
                     | {{commandComments[props.item.command]}}
 
           v-card.mt-3.text-xs-left(v-for='value, key in customPreset', :key='`keyBind${key}`')
-            v-card-title {{value.name}}
+            v-card-title.headline {{value.name}}
+              v-spacer
+              v-menu(left)
+                v-btn(slot='activator', icon)
+                  v-icon more_vert
+                v-list
+                  v-list-tile(@click="mode = 'normal'")
+                    v-list-tile-title 現在のフィルターで表示
             v-card-text
               v-data-table(:headers='headers', :items='filteredKeyBind(value)' hide-actions expand)
                 template(slot='items', slot-scope="props")
