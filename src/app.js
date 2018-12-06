@@ -139,7 +139,7 @@ export default {
     presetIndex() {
       return this.customPreset.findIndex(value => value.name === this.customName)
     },
-    questionNumber() {
+    sumQuestionNumber() {
       return this.gameKeyBind.length
     },
   },
