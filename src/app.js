@@ -398,8 +398,7 @@ export default {
     },
     gameEnd() {
       this.gameWindow = false
-      window.removeEventListener('keydonw')
-      window.removeEventListener('keyup')
+      this.unObserveKey()
     },
     keyDown(e) {
       e.preventDefault()
