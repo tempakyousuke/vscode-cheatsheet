@@ -325,6 +325,7 @@ export default {
       })
       this.setGameKey()
       window.addEventListener('keydown', e => {
+        e.preventDefault()
         this.keyDown(e.key)
       })
       window.addEventListener('keyup', e => {
