@@ -444,13 +444,6 @@ export default {
     },
     nextQuestion() {
       this.gameIndex++
-      this.nowPress = {
-        other: '',
-        alt: false,
-        shift: false,
-        ctrl: false,
-        cmd: false
-      }
       if (this.sumQuestionNumber === (this.gameIndex + 1)) {
         console.log('End')
       } else {
