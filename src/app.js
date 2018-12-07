@@ -401,7 +401,9 @@ export default {
       window.removeEventListener('keydonw')
       window.removeEventListener('keyup')
     },
-    keyDown(key) {
+    keyDown(e) {
+      e.preventDefault()
+      let key = e.key
       key = key.toLowerCase()
       if (key === 'alt') {
         this.nowPress.alt = true
@@ -423,7 +425,8 @@ export default {
       this.nowPress.other = key
       this.checkKey()
     },
-    keyUp(key) {
+    keyUp(e) {
+      let key = e.key
       key = key.toLowerCase()
       if (key === 'alt') {
         this.nowPress.alt = false
