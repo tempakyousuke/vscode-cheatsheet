@@ -149,6 +149,8 @@ v-app
                 v-list
                   v-list-tile(@click="mode = 'normal'")
                     v-list-tile-title 現在のフィルターで表示
+                  v-list-tile(@click='startGame(filteredKeyBind(value))')
+                    v-list-tile-title ゲームスタート
             v-card-text
               v-data-table(:headers='headers', :items='filteredKeyBind(value)' hide-actions expand)
                 template(slot='items', slot-scope="props")
@@ -170,6 +172,8 @@ v-app
                 v-list
                   v-list-tile(@click="mode = 'normal'")
                     v-list-tile-title 現在のフィルターで表示
+                  v-list-tile(@click='startGame(filteredKeyBind(value))')
+                    v-list-tile-title ゲームスタート
             v-card-text
               v-data-table(:headers='headers', :items='filteredKeyBind(value)' hide-actions expand)
                 template(slot='items', slot-scope="props")
