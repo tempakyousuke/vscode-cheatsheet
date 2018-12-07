@@ -399,6 +399,7 @@ export default {
     keyDown(e) {
       e.preventDefault()
       let key = e.key
+      console.log(e)
       key = key.toLowerCase()
       if (key === 'alt') {
         this.nowPress.alt = true
@@ -412,7 +413,7 @@ export default {
         this.nowPress.ctrl = true
         return
       }
-      if (key === 'cmd') {
+      if (key === 'meta') {
         this.nowPress.cmd = true
         return
       }
