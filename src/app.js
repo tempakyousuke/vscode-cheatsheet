@@ -157,7 +157,7 @@ export default {
       return this.gameKeyBind[this.gameIndex]
     },
     gameReplaceOption() {
-      let option = Object.assign({}, this.replaceKey)
+      let option = Object.assign({}, this.replaceOption)
       delete option.alt
       delete option.cmd
       delete option.shift
