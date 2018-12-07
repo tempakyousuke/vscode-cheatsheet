@@ -467,6 +467,10 @@ export default {
       } else {
         this.setGameKey()
       }
+    observeKey() {
+      window.addEventListener('keydown', this.keyDown)
+      window.addEventListener('keyup', this.keyUp)
+    },
     unObserveKey() {
       window.removeEventListener('keydown', this.keyDown)
       window.removeEventListener('keyup', this.keyUp)
