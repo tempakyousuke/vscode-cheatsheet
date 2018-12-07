@@ -469,6 +469,12 @@ export default {
         this.setGameKey()
       }
     },
+    repeatGame() {
+      this.gameIndex = 0
+      this.setGameKey()
+      this.observeKey()
+      this.isGameFinish = false
+    },
     observeKey() {
       window.addEventListener('keydown', this.keyDown)
       window.addEventListener('keyup', this.keyUp)
