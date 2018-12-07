@@ -462,11 +462,13 @@ export default {
     },
     nextQuestion() {
       this.gameIndex++
-      if (this.sumQuestionNumber === (this.gameIndex + 1)) {
-        console.log('End')
+      if (this.sumQuestionNumber === this.gameIndex) {
+        this.unObserveKey()
+        this.isGameFinish = true
       } else {
         this.setGameKey()
       }
+    },
     observeKey() {
       window.addEventListener('keydown', this.keyDown)
       window.addEventListener('keyup', this.keyUp)
