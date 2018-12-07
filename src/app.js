@@ -388,55 +388,44 @@ export default {
       key = key.toLowerCase()
       if (key === 'alt') {
         this.nowPress.alt = true
-        this.checkKey()
         return
       }
       if (key === 'shift') {
         this.nowPress.shift = true
-        this.checkKey()
         return
       }
       if (key === 'control') {
         this.nowPress.ctrl = true
-        this.checkKey()
         return
       }
       if (key === 'cmd') {
         this.nowPress.cmd = true
-        this.checkKey()
         return
       }
       this.nowPress.other = key
       this.checkKey()
-      return
     },
     keyUp(key) {
       key = key.toLowerCase()
       if (key === 'alt') {
         this.nowPress.alt = false
-        this.checkKey()
         return
       }
       if (key === 'shift') {
         this.nowPress.shift = false
-        this.checkKey()
         return
       }
       if (key === 'control') {
         this.nowPress.ctrl = false
-        this.checkKey()
         return
       }
       if (key === 'command') {
         this.nowPress.cmd = false
-        this.checkKey()
         return
       }
       if (this.nowPress.other === key) {
         this.nowPress.other = ''
       }
-      this.checkKey()
-      return
     },
     checkKey() {
       const answer = this.gameKey[0]
