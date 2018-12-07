@@ -380,6 +380,22 @@ export default {
       })
       return key
     },
+    shiftReplace(key) {
+      const options = {
+        '{': '[',
+        '}': ']',
+        '=': '-',
+        '`': '@',
+        '*': ':',
+        '+': ';',
+      }
+      Object.entries(options).forEach(([before, after]) => {
+        if (after) {
+          key = replaceString(key, before, after)
+        }
+      })
+      return key
+    },
     gameEnd() {
       this.gameWindow = false
       window.removeEventListener('keydonw')
@@ -403,6 +419,7 @@ export default {
         this.nowPress.cmd = true
         return
       }
+      key = this.shiftReplace(key)
       this.nowPress.other = key
       this.checkKey()
     },
