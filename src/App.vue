@@ -189,23 +189,30 @@ v-app
     v-layout(row='', justify-center='')
       v-dialog(v-model='gameWindow', persistent='', max-width='800')
         v-card
-          v-card-title.headline キー入力ゲーム　　　{{nowQuestionNumber}} / {{sumQuestionNumber}}
-          v-card-text.text-xs-center(v-if='gameWindow')
+          v-card-title.headline キー入力ゲーム
+            template(v-if='!isGameFinish')
+              | {{nowQuestionNumber}} / {{sumQuestionNumber}}
+          v-card-text.text-xs-center(v-if='!isGameFinish')
             div.question-outer
               span.questionKey {{replaceKey(nowQuestion.key)}}
-            v-layout(row wrap)
-              v-flex.text-xs-right(xs2 offset-xs2)
+            v-layout.headline(row wrap)
+              v-flex.text-xs-right(xs4)
                 | コマンド名：
               v-flex.text-xs-left(xs5)
                 | {{nowQuestion.command}}
-            v-layout(row wrap)
-              v-flex.text-xs-right(xs2 offset-xs2)
+            v-layout.headline(row wrap)
+              v-flex.text-xs-right(xs4)
                 | コメント：
               v-flex.text-xs-left(xs5)
                 | {{commandComments[nowQuestion.command]}}
+          v-card-text.text-xs-center(v-if='isGameFinish')
+            div.question-outer
+              v-btn(icon @click.native='repeatGame')
+                v-icon replay
+              span.questionKey もう一回
           v-card-actions
             v-spacer
-            v-btn(color='green darken-1', flat='', @click.native='gameWindow = false') 閉じる
+            v-btn(color='green darken-1', flat='', @click.native='gameEnd') 閉じる
       v-dialog(v-model='jsonDialog', persistent='', max-width='290')
         v-card
           v-card-title.headline JSONのパースに失敗しました
@@ -213,7 +220,7 @@ v-app
             | {{jsonError}}
           v-card-actions
             v-spacer
-            v-btn(color='green darken-1', flat='', @click.native='jsonDialog = false') 閉じる
+            v-btn(color='green darken-1', flat='', @click.native='gameEnd') 閉じる
       v-dialog(v-model='copyConfirm', persistent='', max-width='400')
         v-card
           v-card-title.headline プリセットコピー
