@@ -324,13 +324,7 @@ export default {
         return value.key
       })
       this.setGameKey()
-      window.addEventListener('keydown', e => {
-        e.preventDefault()
-        this.keyDown(e.key)
-      })
-      window.addEventListener('keyup', e => {
-        this.keyUp(e.key)
-      })
+      this.observeKey()
     },
     setGameKey() {
       let keys = this.nowQuestion.key.split(/\s/)
