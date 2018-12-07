@@ -73,7 +73,8 @@ export default {
         shift: false,
         ctrl: false,
         cmd: false
-      }
+      },
+      isGameFinish: true
     }
   },
   computed: {
@@ -320,6 +321,7 @@ export default {
     startGame(keyBind) {
       this.gameIndex = 0
       this.gameWindow = true
+      this.isGameFinish = false
       this.gameKeyBind = keyBind.filter((value) => {
         return value.key
       })
