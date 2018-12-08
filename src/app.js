@@ -401,49 +401,29 @@ export default {
       let key = e.key
       key = key.replace('key', '')
       key = key.toLowerCase()
-      if (key === 'alt') {
+      if (e.altKey) {
         this.nowPress.alt = true
-        return
+      } else {
+        this.nowPress.alt = false
       }
-      if (key === 'shift') {
+      if (e.shiftKey) {
         this.nowPress.shift = true
-        return
+      } else {
+        this.nowPress.shift = false
       }
-      if (key === 'control') {
+      if (e.ctrlKey) {
         this.nowPress.ctrl = true
-        return
+      } else {
+        this.nowPress.ctrl = false
       }
-      if (key === 'meta') {
+      if (e.metaKey) {
         this.nowPress.cmd = true
-        return
+      } else {
+        this.nowPress.cmd = false
       }
       key = this.shiftReplace(key)
       this.nowPress.other = key
       this.checkKey()
-    },
-    keyUp(e) {
-      let key = e.key
-      key = key.toLowerCase()
-      key = key.replace('key', '')
-      if (key === 'alt') {
-        this.nowPress.alt = false
-        return
-      }
-      if (key === 'shift') {
-        this.nowPress.shift = false
-        return
-      }
-      if (key === 'control') {
-        this.nowPress.ctrl = false
-        return
-      }
-      if (key === 'meta') {
-        this.nowPress.cmd = false
-        return
-      }
-      if (this.nowPress.other === key) {
-        this.nowPress.other = ''
-      }
     },
     checkKey() {
       const answer = this.gameKey[0]
@@ -477,11 +457,9 @@ export default {
     },
     observeKey() {
       window.addEventListener('keydown', this.keyDown)
-      window.addEventListener('keyup', this.keyUp)
     },
     unObserveKey() {
       window.removeEventListener('keydown', this.keyDown)
-      window.removeEventListener('keyup', this.keyUp)
     }
   },
   created() {
