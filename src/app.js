@@ -1,5 +1,6 @@
 import windowsDefault from '@/data/windowsDefaultKeys.json'
 import osxDefault from '@/data/osxDefaultKeys.json'
+import { getOsxKey } from '@/getOsxKey.js'
 import { commandComments } from './command_comments.js'
 import stripJsonComments from 'strip-json-comments'
 import { defaultPreset } from '@/data/default_preset.js'
@@ -347,7 +348,7 @@ export default {
         cmd: false
       }
       for (let key of keys) {
-        key = this.gameReplace(key)
+        // key = this.gameReplace(key)
         if (key === 'alt') {
           press.alt = true
           continue
@@ -401,6 +402,9 @@ export default {
       let key = e.key
       key = key.replace('key', '')
       key = key.toLowerCase()
+      if (navigator.userAgent.indexOf('Mac') !== -1) {
+        key = getOsxKey(e.code)
+      }
       if (e.altKey) {
         this.nowPress.alt = true
       } else {
