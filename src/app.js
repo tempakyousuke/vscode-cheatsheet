@@ -399,7 +399,7 @@ export default {
     keyDown(e) {
       e.preventDefault()
       let key = e.key
-      console.log(e)
+      key = key.replace('key', '')
       key = key.toLowerCase()
       if (key === 'alt') {
         this.nowPress.alt = true
@@ -424,6 +424,7 @@ export default {
     keyUp(e) {
       let key = e.key
       key = key.toLowerCase()
+      key = key.replace('key', '')
       if (key === 'alt') {
         this.nowPress.alt = false
         return
@@ -446,6 +447,8 @@ export default {
     },
     checkKey() {
       const answer = this.gameKey[0]
+      console.log(answer.other)
+      console.log(this.nowPress.other)
       if (
         this.nowPress.alt === answer.alt &&
         this.nowPress.shift === answer.shift &&
