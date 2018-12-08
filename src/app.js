@@ -447,8 +447,6 @@ export default {
     },
     checkKey() {
       const answer = this.gameKey[0]
-      console.log(answer.other)
-      console.log(this.nowPress.other)
       if (
         this.nowPress.alt === answer.alt &&
         this.nowPress.shift === answer.shift &&
