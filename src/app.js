@@ -436,7 +436,7 @@ export default {
         this.nowPress.ctrl = false
         return
       }
-      if (key === 'command') {
+      if (key === 'meta') {
         this.nowPress.cmd = false
         return
       }
