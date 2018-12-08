@@ -76,7 +76,7 @@ export default {
         cmd: false
       },
       isGameFinish: true,
-      gameOption: {
+      gameOptions: {
         hideKey: false,
         hideCommand: false,
         hideComment: false
@@ -219,6 +219,9 @@ export default {
     },
     saveOptions() {
       localStorage.setItem('options', JSON.stringify(this.options))
+    },
+    saveGameOptions() {
+      localStorage.setItem('gameOptions', JSON.stringify(this.gameOptions))
     },
     addPreset() {
       if ((this.command || this.when || this.contains) && this.customName) {
@@ -487,6 +490,11 @@ export default {
     let options = localStorage.getItem('options')
     if (options) {
       this.options = JSON.parse(options)
+    }
+
+    let gameOptions = localStorage.getItem('gameOptions')
+    if (gameOptions) {
+      this.gameOptions = JSON.parse(gameOptions)
     }
 
     let replaceOption = localStorage.getItem('replaceOption')

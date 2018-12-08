@@ -193,14 +193,14 @@ v-app
             template(v-if='!isGameFinish')
               | {{nowQuestionNumber}} / {{sumQuestionNumber}}
           v-card-text.text-xs-center(v-if='!isGameFinish')
-            div.question-outer
+            div.question-outer(v-if='!gameOptions.hideKey')
               span.questionKey {{replaceKey(nowQuestion.key)}}
-            v-layout.headline(row wrap)
+            v-layout.headline(v-if='!gameOptions.hideCommand' row wrap)
               v-flex.text-xs-right(xs4)
                 | コマンド名：
               v-flex.text-xs-left(xs5)
                 | {{nowQuestion.command}}
-            v-layout.headline(row wrap)
+            v-layout.headline(v-if='!gameOptions.hideComment' row wrap)
               v-flex.text-xs-right(xs4)
                 | コメント：
               v-flex.text-xs-left(xs5)
@@ -212,8 +212,13 @@ v-app
               br
               span.questionKey(@click='repeatGame') もう一回
           v-card-actions
+            v-layout(row justify-start='true' align-content-start)
+              v-switch(v-model='gameOptions.hideKey' label='キーを隠す' @change="saveGameOptions")
+              v-switch(v-model='gameOptions.hideCommand' label='コマンドを隠す' @change="saveGameOptions")
+              v-switch(v-model='gameOptions.hideComment' label='コメントを隠す' @change="saveGameOptions")
             v-spacer
             v-btn(color='green darken-1', flat='', @click.native='gameEnd') 閉じる
+
       v-dialog(v-model='jsonDialog', persistent='', max-width='290')
         v-card
           v-card-title.headline JSONのパースに失敗しました
