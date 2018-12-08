@@ -207,9 +207,10 @@ v-app
                 | {{commandComments[nowQuestion.command]}}
           v-card-text.text-xs-center(v-if='isGameFinish')
             div.question-outer
-              v-btn(icon @click.native='repeatGame')
-                v-icon replay
-              span.questionKey もう一回
+              v-btn(icon @click.native='repeatGame' style='height:100px;width:100px;')
+                v-icon(size='100px') replay
+              br
+              span.questionKey(@click='repeatGame') もう一回
           v-card-actions
             v-spacer
             v-btn(color='green darken-1', flat='', @click.native='gameEnd') 閉じる
