@@ -317,6 +317,7 @@ export default {
       })
       this.customPreset = [...this.customPreset, ...preset]
       this.copyConfirm = false
+      localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
     },
     isInCustomPreset(name) {
       return this.customPreset.some(value => {
