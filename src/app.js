@@ -75,7 +75,12 @@ export default {
         ctrl: false,
         cmd: false
       },
-      isGameFinish: true
+      isGameFinish: true,
+      gameOption: {
+        hideKey: false,
+        hideCommand: false,
+        hideComment: false
+      }
     }
   },
   computed: {
