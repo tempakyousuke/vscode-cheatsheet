@@ -32,7 +32,7 @@ export const getOsxKey = code => {
   if (code === 'ArrowDown') {
     return 'down'
   }
-  if (['Delete', 'Home', 'End', 'Enter', 'PageUp', 'PageDown', 'Tab', 'Backspace'].indexOf(code) !== -1) {
+  if (['Delete', 'Home', 'End', 'Enter', 'PageUp', 'PageDown', 'Tab', 'Backspace', 'Escape'].indexOf(code) !== -1) {
     return code.toLowerCase()
   }
   return `[${code}]`
