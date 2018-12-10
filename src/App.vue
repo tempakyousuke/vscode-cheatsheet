@@ -125,6 +125,8 @@ v-app
                 v-list
                   v-list-tile(@click="mode = 'allView'")
                     v-list-tile-title プリセットごとにすべて表示
+                  v-list-tile(@click='startGame(keyBind)')
+                    v-list-tile-title ゲームスタート
             v-card-text
               v-data-table(:headers='headers', :items='keyBind' hide-actions expand)
                 template(slot='items', slot-scope="props")
@@ -147,6 +149,8 @@ v-app
                 v-list
                   v-list-tile(@click="mode = 'normal'")
                     v-list-tile-title 現在のフィルターで表示
+                  v-list-tile(@click='startGame(filteredKeyBind(value))')
+                    v-list-tile-title ゲームスタート
             v-card-text
               v-data-table(:headers='headers', :items='filteredKeyBind(value)' hide-actions expand)
                 template(slot='items', slot-scope="props")
@@ -168,6 +172,8 @@ v-app
                 v-list
                   v-list-tile(@click="mode = 'normal'")
                     v-list-tile-title 現在のフィルターで表示
+                  v-list-tile(@click='startGame(filteredKeyBind(value))')
+                    v-list-tile-title ゲームスタート
             v-card-text
               v-data-table(:headers='headers', :items='filteredKeyBind(value)' hide-actions expand)
                 template(slot='items', slot-scope="props")
@@ -179,7 +185,40 @@ v-app
                     | {{props.item.when}}
                   td.comment-td(v-if='!options.hideComment')
                     | {{commandComments[props.item.command]}}
+
     v-layout(row='', justify-center='')
+      v-dialog(v-model='gameWindow', persistent='', max-width='800')
+        v-card
+          v-card-title.headline キー入力ゲーム
+            template(v-if='!isGameFinish')
+              | {{nowQuestionNumber}} / {{sumQuestionNumber}}
+          v-card-text.text-xs-center(v-if='!isGameFinish')
+            div.question-outer(v-if='!gameOptions.hideKey')
+              span.questionKey {{replaceKey(nowQuestion.key)}}
+            v-layout.headline(v-if='!gameOptions.hideCommand' row wrap)
+              v-flex.text-xs-right(xs4)
+                | コマンド名：
+              v-flex.text-xs-left(xs5)
+                | {{nowQuestion.command}}
+            v-layout.headline(v-if='!gameOptions.hideComment' row wrap)
+              v-flex.text-xs-right(xs4)
+                | コメント：
+              v-flex.text-xs-left(xs5)
+                | {{commandComments[nowQuestion.command]}}
+          v-card-text.text-xs-center(v-if='isGameFinish')
+            div.question-outer
+              v-btn(icon @click.native='repeatGame' style='height:100px;width:100px;')
+                v-icon(size='100px') replay
+              br
+              span.questionKey(@click='repeatGame') もう一回
+          v-card-actions
+            v-layout(row justify-start='true' align-content-start)
+              v-switch(v-model='gameOptions.hideKey' label='キーを隠す' @change="saveGameOptions")
+              v-switch(v-model='gameOptions.hideCommand' label='コマンドを隠す' @change="saveGameOptions")
+              v-switch(v-model='gameOptions.hideComment' label='コメントを隠す' @change="saveGameOptions")
+            v-spacer
+            v-btn(color='green darken-1', flat='', @click.native='gameEnd') 閉じる
+
       v-dialog(v-model='jsonDialog', persistent='', max-width='290')
         v-card
           v-card-title.headline JSONのパースに失敗しました
@@ -187,7 +226,7 @@ v-app
             | {{jsonError}}
           v-card-actions
             v-spacer
-            v-btn(color='green darken-1', flat='', @click.native='jsonDialog = false') 閉じる
+            v-btn(color='green darken-1', flat='', @click.native='gameEnd') 閉じる
       v-dialog(v-model='copyConfirm', persistent='', max-width='400')
         v-card
           v-card-title.headline プリセットコピー
@@ -235,4 +274,11 @@ td.comment-td
 <style lang='sass'>
 body
   min-height: 1200px
+
+.question-outer
+  height: 200px
+  padding: 30px
+
+.questionKey
+  font-size: 50px
 </style>

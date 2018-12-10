@@ -1,5 +1,7 @@
 import windowsDefault from '@/data/windowsDefaultKeys.json'
 import osxDefault from '@/data/osxDefaultKeys.json'
+import { getOsxKey } from '@/getOsxKey.js'
+import { getWindowsKey } from '@/getWindowsKey.js'
 import { commandComments } from './command_comments.js'
 import stripJsonComments from 'strip-json-comments'
 import { defaultPreset } from '@/data/default_preset.js'
@@ -38,9 +40,10 @@ export default {
         'oem_4': '[',
         'oem_5': '\\',
         'oem_6': ']',
+        'oem_7': '^',
         'oem_comma': ',',
-        'oem_plus': '＋',
-        'oem_minus': '－',
+        'oem_plus': ';',
+        'oem_minus': '-',
         'oem_period': '.',
         '[IntlYen]': '¥',
         '[Quote]': ':',
@@ -62,7 +65,24 @@ export default {
         'delete': 'delete',
       },
       mode: 'normal',
-      copyConfirm: false
+      copyConfirm: false,
+      gameWindow: false,
+      gameKeyBind: [],
+      gameIndex: 0,
+      gameKey: [],
+      nowPress: {
+        other: '',
+        alt: false,
+        shift: false,
+        ctrl: false,
+        cmd: false
+      },
+      isGameFinish: true,
+      gameOptions: {
+        hideKey: false,
+        hideCommand: false,
+        hideComment: false
+      }
     }
   },
   computed: {
@@ -135,6 +155,36 @@ export default {
     },
     presetIndex() {
       return this.customPreset.findIndex(value => value.name === this.customName)
+    },
+    sumQuestionNumber() {
+      return this.gameKeyBind.length
+    },
+    nowQuestionNumber() {
+      return this.gameIndex + 1
+    },
+    nowQuestion() {
+      return this.gameKeyBind[this.gameIndex]
+    },
+    gameReplaceOption() {
+      let option = Object.assign({}, this.replaceOption)
+      delete option.alt
+      delete option.cmd
+      delete option.shift
+      delete option.ctrl
+      delete option.escape
+      delete option.backspace
+      delete option.home
+      delete option.end
+      delete option.pageup
+      delete option.pagedown
+      delete option.delete
+      option.down = 'arrowdown'
+      option.up = 'arrowup'
+      option.left = 'arrowleft'
+      option.right = 'arrowright'
+      option.pagearrowdown = 'pagedown'
+      option.pagearrowup = 'pageup'
+      return option
     }
   },
   methods: {
@@ -171,6 +221,9 @@ export default {
     },
     saveOptions() {
       localStorage.setItem('options', JSON.stringify(this.options))
+    },
+    saveGameOptions() {
+      localStorage.setItem('gameOptions', JSON.stringify(this.gameOptions))
     },
     addPreset() {
       if ((this.command || this.when || this.contains) && this.customName) {
@@ -266,6 +319,7 @@ export default {
       })
       this.customPreset = [...this.customPreset, ...preset]
       this.copyConfirm = false
+      localStorage.setItem('custom_preset', JSON.stringify(this.customPreset))
     },
     isInCustomPreset(name) {
       return this.customPreset.some(value => {
@@ -275,6 +329,166 @@ export default {
     hideDefaultToggle() {
       this.hideDefault = !this.hideDefault
       localStorage.setItem('hideDefault', JSON.stringify(this.hideDefault))
+    },
+    startGame(keyBind) {
+      this.gameIndex = 0
+      this.gameWindow = true
+      this.isGameFinish = false
+      this.gameKeyBind = keyBind.filter((value) => {
+        return value.key
+      })
+      this.setGameKey()
+      this.observeKey()
+    },
+    setGameKey() {
+      let keys = this.nowQuestion.key.split(/\s/)
+      let mustPress = []
+      for (let key of keys) {
+        let press = this.createPress(key)
+        mustPress.push(press)
+      }
+      this.gameKey = mustPress
+    },
+    createPress(key) {
+      let keys = key.split('+')
+      let press = {
+        other: '',
+        alt: false,
+        shift: false,
+        ctrl: false,
+        cmd: false
+      }
+      for (let key of keys) {
+        // key = this.gameReplace(key)
+        if (key === 'alt') {
+          press.alt = true
+          continue
+        }
+        if (key === 'shift') {
+          press.shift = true
+          continue
+        }
+        if (key === 'ctrl') {
+          press.ctrl = true
+          continue
+        }
+        if (key === 'cmd') {
+          press.cmd = true
+          continue
+        }
+        if (/oem/.test(key)) {
+          key = key
+            .replace('oem_1', 'Quote')
+            .replace('oem_2', 'Slash')
+            .replace('oem_3', 'BracketLeft')
+            .replace('oem_4', 'BracketRight')
+            .replace('oem_5', 'IntlYen')
+            .replace('oem_6', 'Backslash')
+            .replace('oem_7', 'Equal')
+            .replace('oem_comma', 'Comma')
+            .replace('oem_plus', 'Semicolon')
+            .replace('oem_minus', 'Minus')
+            .replace('oem_period', 'Period')
+        }
+        press.other = key
+      }
+      return press
+    },
+    gameReplace(key) {
+      Object.entries(this.gameReplaceOption).forEach(([before, after]) => {
+        if (after) {
+          key = replaceString(key, before, after)
+        }
+      })
+      return key
+    },
+    shiftReplace(key) {
+      const options = {
+        '{': '[',
+        '}': ']',
+        '=': '-',
+        '`': '@',
+        '*': ':',
+        '+': ';',
+      }
+      Object.entries(options).forEach(([before, after]) => {
+        if (after) {
+          key = replaceString(key, before, after)
+        }
+      })
+      return key
+    },
+    gameEnd() {
+      this.gameWindow = false
+      this.unObserveKey()
+    },
+    keyDown(e) {
+      e.preventDefault()
+      let key = e.key
+      if (navigator.userAgent.indexOf('Mac') !== -1) {
+        key = getOsxKey(e.code)
+      } else {
+        key = getWindowsKey(e.code)
+      }
+      if (e.altKey) {
+        this.nowPress.alt = true
+      } else {
+        this.nowPress.alt = false
+      }
+      if (e.shiftKey) {
+        this.nowPress.shift = true
+      } else {
+        this.nowPress.shift = false
+      }
+      if (e.ctrlKey) {
+        this.nowPress.ctrl = true
+      } else {
+        this.nowPress.ctrl = false
+      }
+      if (e.metaKey) {
+        this.nowPress.cmd = true
+      } else {
+        this.nowPress.cmd = false
+      }
+      key = this.shiftReplace(key)
+      this.nowPress.other = key
+      this.checkKey()
+    },
+    checkKey() {
+      const answer = this.gameKey[0]
+      if (
+        this.nowPress.alt === answer.alt &&
+        this.nowPress.shift === answer.shift &&
+        this.nowPress.ctrl === answer.ctrl &&
+        this.nowPress.cmd === answer.cmd &&
+        this.nowPress.other === answer.other
+      ) {
+        this.gameKey.shift()
+        if (this.gameKey.length === 0) {
+          this.nextQuestion()
+        }
+      }
+    },
+    nextQuestion() {
+      this.gameIndex++
+      if (this.sumQuestionNumber === this.gameIndex) {
+        this.unObserveKey()
+        this.isGameFinish = true
+      } else {
+        this.setGameKey()
+      }
+    },
+    repeatGame() {
+      this.gameIndex = 0
+      this.setGameKey()
+      this.observeKey()
+      this.isGameFinish = false
+    },
+    observeKey() {
+      window.addEventListener('keydown', this.keyDown)
+    },
+    unObserveKey() {
+      window.removeEventListener('keydown', this.keyDown)
     }
   },
   created() {
@@ -293,6 +507,11 @@ export default {
     let options = localStorage.getItem('options')
     if (options) {
       this.options = JSON.parse(options)
+    }
+
+    let gameOptions = localStorage.getItem('gameOptions')
+    if (gameOptions) {
+      this.gameOptions = JSON.parse(gameOptions)
     }
 
     let replaceOption = localStorage.getItem('replaceOption')
