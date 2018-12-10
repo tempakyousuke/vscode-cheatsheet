@@ -1,6 +1,7 @@
 import windowsDefault from '@/data/windowsDefaultKeys.json'
 import osxDefault from '@/data/osxDefaultKeys.json'
 import { getOsxKey } from '@/getOsxKey.js'
+import { getWindowsKey } from '@/getWindowsKey.js'
 import { commandComments } from './command_comments.js'
 import stripJsonComments from 'strip-json-comments'
 import { defaultPreset } from '@/data/default_preset.js'
@@ -39,6 +40,7 @@ export default {
         'oem_4': '[',
         'oem_5': '\\',
         'oem_6': ']',
+        'oem_7': '^',
         'oem_comma': ',',
         'oem_plus': ';',
         'oem_minus': '-',
@@ -374,6 +376,20 @@ export default {
           press.cmd = true
           continue
         }
+        if (/oem/.test(key)) {
+          key = key
+            .replace('oem_1', 'Quote')
+            .replace('oem_2', 'Slash')
+            .replace('oem_3', 'BracketLeft')
+            .replace('oem_4', 'BracketRight')
+            .replace('oem_5', 'IntlYen')
+            .replace('oem_6', 'Backslash')
+            .replace('oem_7', 'Equal')
+            .replace('oem_comma', 'Comma')
+            .replace('oem_plus', 'Semicolon')
+            .replace('oem_minus', 'Minus')
+            .replace('oem_period', 'Period')
+        }
         press.other = key
       }
       return press
@@ -409,10 +425,10 @@ export default {
     keyDown(e) {
       e.preventDefault()
       let key = e.key
-      key = key.replace('key', '')
-      key = key.toLowerCase()
       if (navigator.userAgent.indexOf('Mac') !== -1) {
         key = getOsxKey(e.code)
+      } else {
+        key = getWindowsKey(e.code)
       }
       if (e.altKey) {
         this.nowPress.alt = true
